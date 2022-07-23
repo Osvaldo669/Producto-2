@@ -1,0 +1,11 @@
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\BL.dll
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\BL.pdb
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\DAL.dll
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\DAL.pdb
+C:\Users\Gamer\source\repos\Producto 2\BL\obj\Debug\BL.csproj.AssemblyReference.cache
+C:\Users\Gamer\source\repos\Producto 2\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\Gamer\source\repos\Producto 2\BL\obj\Debug\BL.csproj.CopyComplete
+C:\Users\Gamer\source\repos\Producto 2\BL\obj\Debug\BL.dll
+C:\Users\Gamer\source\repos\Producto 2\BL\obj\Debug\BL.pdb
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\Entities.dll
+C:\Users\Gamer\source\repos\Producto 2\BL\bin\Debug\Entities.pdb
