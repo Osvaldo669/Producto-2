@@ -64,6 +64,10 @@ namespace DAL
             else
             {
                 command.CommandText = query;
+                foreach (var parametro in parameters)
+                {
+                    command.Parameters.Add(parametro);
+                }
                 command.Connection = connection;
                 adapter = new SqlDataAdapter(command);
                 try
