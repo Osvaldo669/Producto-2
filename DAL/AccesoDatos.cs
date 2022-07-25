@@ -98,7 +98,7 @@ namespace DAL
                 try
                 {
                     command.ExecuteNonQuery();
-                    msg = "Se ha realizado correctamento";
+                    msg = "Se ha realizado correctamente la tarea";
                     result = true;
                 }
                 catch (Exception ex)

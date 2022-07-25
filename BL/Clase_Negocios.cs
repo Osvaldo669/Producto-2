@@ -91,14 +91,7 @@ namespace BL
             return container;
         }
 
-        public Boolean EliminarRegistro(ref string msg,List<SqlParameter> parameters)
-        {
-
-
-            string query = "DELETE FROM laboratorio WHERE nombre_laboratorio=@clave";
-
-            return accesoDatos.Operaciones_Tables(query, ref msg,parameters);
-        }
+       
 
 
 
