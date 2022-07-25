@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -47,7 +48,7 @@ namespace Web_Presentation
             Random random = new Random();
             int randowss = random.Next(0, strings.Count - 1);
 
-            container = bl.Consulta_General(strings[randowss], ref mensaje);
+            container = bl.Consulta_General(strings[13], ref mensaje);
             if (container != null)
             {
                 GridView1.DataSource = container.Tables[0];
@@ -61,7 +62,15 @@ namespace Web_Presentation
         {
             string msg = "";
             string clave = "D8";
-            Label2.Text = bl.EliminarRegistro(ref msg, clave);
+            SqlParameter sql = new SqlParameter("@clave",clave);
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            sqlParameters.Add(sql);
+
+            if(bl.EliminarRegistro(ref msg, sqlParameters))
+            {
+                Label2.Text = "Se realizo correctamente";
+            }
+            
         }
     }
 }

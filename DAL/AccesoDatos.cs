@@ -77,10 +77,9 @@ namespace DAL
             return dataSet;
         }
 
-        public string EliminarRegistro(string query, ref string msg, string clave)
+        public Boolean Operaciones_Tables(string query, ref string msg, List<SqlParameter> parametros)
         {
-
-
+            Boolean result = false;
             SqlCommand command = new SqlCommand();
             msg = AbrirConexion();
 
@@ -91,21 +90,26 @@ namespace DAL
             else
             {
                 command.CommandText = query;
-                command.Parameters.AddWithValue("@clave", clave);
+                foreach(var parametro in parametros)
+                {
+                    command.Parameters.Add(parametro);
+                }
                 command.Connection = connection;
                 try
                 {
                     command.ExecuteNonQuery();
-                    msg = "Se ha eliminado el registro correctamente";
+                    msg = "Se ha realizado correctamento";
+                    result = true;
                 }
                 catch (Exception ex)
                 {
                     msg = "Error: " + ex.Message;
+                    result = false;
                 }
             }
             CerrarConexion();
 
-            return msg;
+            return result;
         }
     }
 }
