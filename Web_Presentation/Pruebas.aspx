@@ -16,6 +16,9 @@
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             <asp:GridView runat="server" ID="GridView1"></asp:GridView>
         </div>
+        <div>
+            <asp:Button ID="Button2" runat="server" Text="eliminar" OnClick="Button2_Click" />
+        </div>
     </form>
 </body>
 </html>

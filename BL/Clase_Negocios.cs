@@ -91,6 +91,15 @@ namespace BL
             return container;
         }
 
+        public string EliminarRegistro(ref string msg, string clave)
+        {
+
+
+            string query = "DELETE FROM laboratorio WHERE nombre_laboratorio=@clave";
+
+            return accesoDatos.EliminarRegistro(query, ref msg, clave);
+        }
+
 
 
     }

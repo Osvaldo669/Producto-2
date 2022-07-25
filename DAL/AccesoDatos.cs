@@ -76,5 +76,36 @@ namespace DAL
             }
             return dataSet;
         }
+
+        public string EliminarRegistro(string query, ref string msg, string clave)
+        {
+
+
+            SqlCommand command = new SqlCommand();
+            msg = AbrirConexion();
+
+            if (connection == null)
+            {
+                msg = "Sin conexion a la base de datos";
+            }
+            else
+            {
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@clave", clave);
+                command.Connection = connection;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    msg = "Se ha eliminado el registro correctamente";
+                }
+                catch (Exception ex)
+                {
+                    msg = "Error: " + ex.Message;
+                }
+            }
+            CerrarConexion();
+
+            return msg;
+        }
     }
 }

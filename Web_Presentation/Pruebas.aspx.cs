@@ -56,7 +56,12 @@ namespace Web_Presentation
             }
 
         }
-        
-        
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            string clave = "D8";
+            Label2.Text = bl.EliminarRegistro(ref msg, clave);
+        }
     }
 }
