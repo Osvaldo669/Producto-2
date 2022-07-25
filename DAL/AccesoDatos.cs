@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Entities;
+
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,6 +13,7 @@ namespace DAL
 {
     public class AccesoDatos
     {
+        private Equipo a;
         private string cadenaDB;
         SqlConnection connection;
         public AccesoDatos(string cadena)
@@ -76,5 +79,93 @@ namespace DAL
             }
             return dataSet;
         }
+
+        public AccesoDatos() //constructor se crea primero cuando crea la clase
+        {
+            a = null;
+        }
+        public string InsertarMouse(Mouse a)
+        {
+            Equipo nuevo;
+            nuevo = new Equipo();//crea un nuevo 
+            nuevo.Informacion = a;
+            string salida;
+            {
+
+            }
+            return "Se inserto correctamente";
+        }
+
+        //public string InsertarMonitor(Monitor b) 
+        //{
+            
+        //}
+
+        //public string InsertarTeclado(Teclado c)
+        //{
+
+        //}
+
+        //public string InsertarGabinete(Gabinete d)
+        //{
+
+        //}
+
+        //public string InsertarDiscoDuro(DiscoDuro e)
+        //{
+
+        //}
+
+        //public string InsertarMarca(Marca f)
+        //{
+
+        //}
+
+        //public string InsertarComponente(DiscoDuro g)
+        //{
+
+        //}
+        //public string InsertarModeloCPU(ModeloCPU h)
+        //{
+
+        //}
+        //public string InsertarTipoCPU(TipoCpu i)
+        //{
+
+        //}
+        //public string InsertarTipoRam(TipoRam j)
+        //{
+
+        //}
+        //public string InsertarRam(Ram k)
+        //{
+
+        //}
+        //public string InsertarCantDisc(cantDisc l)
+        //{
+
+        //}
+        //public string InsertarLaboratorio(Laboratorio m)
+        //{
+
+        //}
+        //public string InsertarUbicacion(Ubicacion n)
+        //{
+
+        //}
+        //public string InsertarActualizacion(Actualizacion o)
+        //{
+
+        //}
+        //public string InsertarCPU_Generico(CPU_Generico p)
+        //{
+
+        //}
+        //public string InsertarCompuFinal(ComputadoraFinal q)
+        //{
+
+        //}
+
+
     }
 }
