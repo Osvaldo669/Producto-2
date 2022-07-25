@@ -17,7 +17,10 @@
             <asp:GridView runat="server" ID="GridView1"></asp:GridView>
         </div>
         <div>
-            <asp:Button ID="Button2" runat="server" Text="eliminar" OnClick="Button2_Click" />
+            <asp:Button ID="Button2" runat="server" Text="eliminar" OnClick="Button2_Click"  />
+
+            <asp:GridView runat="server" ID="GridView2"></asp:GridView>
+           
         </div>
     </form>
 </body>
