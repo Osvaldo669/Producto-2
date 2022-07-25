@@ -76,5 +76,40 @@ namespace DAL
             }
             return dataSet;
         }
+
+        public Boolean Operaciones_Tables(string query, ref string msg, List<SqlParameter> parametros)
+        {
+            Boolean result = false;
+            SqlCommand command = new SqlCommand();
+            msg = AbrirConexion();
+
+            if (connection == null)
+            {
+                msg = "Sin conexion a la base de datos";
+            }
+            else
+            {
+                command.CommandText = query;
+                foreach(var parametro in parametros)
+                {
+                    command.Parameters.Add(parametro);
+                }
+                command.Connection = connection;
+                try
+                {
+                    command.ExecuteNonQuery();
+                    msg = "Se ha realizado correctamente la tarea";
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    msg = "Error: " + ex.Message;
+                    result = false;
+                }
+            }
+            CerrarConexion();
+
+            return result;
+        }
     }
 }
