@@ -15,7 +15,27 @@ namespace BL
     {
         private string cadenaDB;
         AccesoDatos accesoDatos;
+        private List<string> querys_strings = new List<string>()
+        {
+            "select * from Componente",
+            "select * from Marca ",
+            "select * from Monitor",
+            "select * from Teclado",
+            "select * from Mouse",
+            "select * from Gabinete",
+            "select * from DiscoDuro",
+            "select * from ModeloCpu",
+            "select * from Tipo_Cpu",
+            "select * from TipoRAM",
+            "select * from RAM",
+            "select * from CPU_Generico",
+            "select * from Actualizacion",
+            "select * from Laboratorio",
+            "select * from Ubicacion",
+            "select * from ComputadoraFinal",
+            "select * from cantDisc",
 
+        };
         public Clase_Negocios(string cadena)
         {
             this.cadenaDB = cadena;
@@ -23,71 +43,10 @@ namespace BL
         }
 
 
-        public string Connection()
-        {
-            return accesoDatos.AbrirConexion();
-        }
-
-        public DataSet Consulta_General(string clave_palabre, ref string msg)
+        public DataSet Consulta_General(ref string msg)
         {
             DataSet container = null;
-            string query = "";
-            switch (clave_palabre)
-            {
-                case "Componente":
-                    query = "select * from Componente";
-                    break;
-                case "Marca":
-                    query = "select * from Marca ";
-                    break;
-                case "Monitor":
-                    query = "select * from Monitor";
-                    break ;
-                case "Teclado":
-                    query = "select * from Teclado";
-                    break;
-                case "Mouse":
-                    query = "select * from Mouse";
-                    break;
-                case "Gabinete":
-                    query = "select * from Gabinete";
-                    break;
-                case "DiscoDuro":
-                    query = "select * from DiscoDuro";
-                    break;
-                case "ModeloCpu":
-                    query = "select * from ModeloCpu";
-                    break;
-                case "Tipo_Cpu":
-                    query = "select * from Tipo_Cpu";
-                    break;
-                case "TipoRAM":
-                    query = "select * from TipoRAM";
-                    break;
-                case "RAM":
-                    query = "select * from RAM";
-                    break;
-                case "CPU_Generico":
-                    query = "select * from CPU_Generico";
-                    break;
-                case "Actualizacion":
-                    query = "select * from Actualizacion";
-                    break;
-                case "Laboratorio":
-                    query = "select * from Laboratorio";
-                    break;
-                case "Ubicacion":
-                    query = "select * from Ubicacion";
-                    break;
-                case "ComputadoraFinal":
-                    query = "select * from ComputadoraFinal";
-                    break;
-                case "CantDisc":
-                    query = "select * from cantDisc";
-                    break;
-
-            }
-            container= accesoDatos.ConsultaGeneral(query, ref msg);
+            container = accesoDatos.ConsultaGeneral(querys_strings, ref msg);
             return container;
         }
 

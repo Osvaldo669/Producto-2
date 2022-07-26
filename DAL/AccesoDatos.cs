@@ -19,6 +19,7 @@ namespace DAL
             cadenaDB = cadena;
         }
 
+        //Metodo para abrir la conexion a la base de datos
         public string AbrirConexion()
         {
             string msg = "";
@@ -34,6 +35,7 @@ namespace DAL
             }
             return msg;
         }
+        //Metodo para cerra la conexion hacia la base de datos
         public void CerrarConexion()
         {
             if (connection != null)
@@ -46,7 +48,45 @@ namespace DAL
             }
         }
 
-        public DataSet ConsultaGeneral(string query, ref string msg)
+        //Metodo para una consulta que incluya parametros
+        public DataSet Innner_consulta(string query, ref string msg,List<SqlParameter> parameters)
+        {
+            DataSet data = new DataSet();
+            SqlCommand command = new SqlCommand();
+            SqlDataAdapter adapter = null;
+            msg = AbrirConexion();
+
+            if (connection == null)
+            {
+                msg = "Sin Conexion a la Base de Datos";
+                data = null;
+            }
+            else
+            {
+                command.CommandText = query;
+                foreach (var parametro in parameters)
+                {
+                    command.Parameters.Add(parametro);
+                }
+                command.Connection = connection;
+                adapter = new SqlDataAdapter(command);
+                try
+                {
+                    adapter.Fill(data);
+                    msg = "Consulta Correcta";
+                }
+                catch (Exception ex)
+                {
+                    msg = "Error: " + ex.Message;
+                    data = null;
+                }
+            }
+            CerrarConexion();
+            return data;
+        }
+
+        //Metodo para hacer un select a todas las tablas de la base de datos con la cual vamos a trabajar
+        public DataSet ConsultaGeneral(List<string> querys, ref string msg)
         {
             DataSet dataSet = new DataSet();
             SqlCommand command = new SqlCommand();
@@ -60,23 +100,30 @@ namespace DAL
             }
             else
             {
-                command.CommandText = query;
-                command.Connection = connection;
-                adapter = new SqlDataAdapter(command);
-                try
+                int counter = 0;
+                foreach(string query in querys)
                 {
-                    adapter.Fill(dataSet);
-                    msg = "Consulta Correcta";
-                }
-                catch(Exception ex)
-                {
-                    msg = "Error: " + ex.Message;
-                    dataSet = null;
+                    command.CommandText = query;
+                    command.Connection = connection;
+                    adapter = new SqlDataAdapter(command);
+                    try
+                    {
+                        adapter.Fill(dataSet, counter.ToString());
+                        msg = "Consulta Correcta";
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = "Error: " + ex.Message;
+                        dataSet = null;
+                    }
+                    counter++;
                 }
             }
+            CerrarConexion();
             return dataSet;
         }
 
+        //Metodo para realizar las tareas de insertas, modificar y eliminar cualquier registro de cualquier tabla
         public Boolean Operaciones_Tables(string query, ref string msg, List<SqlParameter> parametros)
         {
             Boolean result = false;
