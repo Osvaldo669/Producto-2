@@ -151,4 +151,5 @@ namespace Entities
         public string imagen2 { get; set; }
         public string imagen3 { get; set; }
     }
+
 }

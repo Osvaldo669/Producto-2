@@ -67,10 +67,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagenes\cpu.jpg" />
+    <Content Include="Imagenes\discduro.png" />
+    <Content Include="Imagenes\discoduro.png" />
+    <Content Include="Imagenes\discopurpura.jpg" />
+    <Content Include="Imagenes\equipo.jpg" />
+    <Content Include="Imagenes\logo.jpeg" />
+    <Content Include="Imagenes\miniteclado.jpg" />
+    <Content Include="Imagenes\mouse.jpg" />
+    <Content Include="Imagenes\procesador.jpg" />
+    <Content Include="Imagenes\ram.png" />
+    <Content Include="Imagenes\ram1.jpg" />
+    <Content Include="Imagenes\teclado.jpg" />
+    <Content Include="Inventario_compu.aspx" />
     <Content Include="Web.config" />
     <Content Include="Pruebas.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Inventario_compu.aspx.cs">
+      <DependentUpon>Inventario_compu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventario_compu.aspx.designer.cs">
+      <DependentUpon>Inventario_compu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\inventario.Master.cs">
+      <DependentUpon>inventario.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\inventario.Master.designer.cs">
+      <DependentUpon>inventario.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pruebas.aspx.cs">
       <DependentUpon>Pruebas.aspx</DependentUpon>
@@ -81,6 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="views\inventario.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -93,6 +121,10 @@
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{78647a2d-9d69-43f2-a989-cce2849bd63a}</Project>
       <Name>BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{ad039978-10f5-44e0-a333-075a6196082f}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
