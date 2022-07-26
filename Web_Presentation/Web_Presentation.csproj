@@ -91,11 +91,11 @@
     <Compile Include="Inventario_compu.aspx.designer.cs">
       <DependentUpon>Inventario_compu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="master_page\inventario.Master.cs">
+    <Compile Include="views\inventario.Master.cs">
       <DependentUpon>inventario.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="master_page\inventario.Master.designer.cs">
+    <Compile Include="views\inventario.Master.designer.cs">
       <DependentUpon>inventario.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,7 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="master_page\inventario.Master" />
+    <Content Include="views\inventario.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

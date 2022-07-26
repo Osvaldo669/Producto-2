@@ -16,10 +16,7 @@ namespace Web_Presentation
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server2"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["bl"] != null) //nulo
-            {
-                bl = (Clase_Negocios)Session["bl"]; //insertamos el campo LON
-            }
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -60,23 +57,6 @@ namespace Web_Presentation
                 Label2.Text = mensaje;
             }
 
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            string mensaje;
-            mensaje = bl.InsertarMouse(new Entities.Mouse()//insertamos la clase entidades
-            {
-                Id_mouse = Convert.ToInt32(id_mouse.Value),
-               f_marcamouse = Convert.ToInt32(marcamouse.Value),
-                conector = conector.Value,
-            });
-
-            Label1.Text = mensaje;
-            Session["bl"] = bl;
-            id_mouse.Value = "";
-            marcamouse.Value = "";
-            conector.Value = "";
         }
     }
 }
