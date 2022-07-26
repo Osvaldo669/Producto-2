@@ -10,3 +10,6 @@ C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\obj\Debug\DAL.csproj.AssemblyRefere
 C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\obj\Debug\DAL.dll
 C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\obj\Debug\DAL.pdb
+C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\bin\Debug\Entities.dll
+C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\bin\Debug\Entities.pdb
+C:\Users\Gamer\Desktop\Puebas\Producto-2\DAL\obj\Debug\DAL.csproj.CopyComplete
