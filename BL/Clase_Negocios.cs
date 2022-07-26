@@ -13,7 +13,6 @@ namespace BL
     
     public class Clase_Negocios
     {
-        private AccesoDatos ObjetoDal = new AccesoDatos();//insertamos un nuevo campo
         private string cadenaDB;
         AccesoDatos accesoDatos;
 
@@ -91,12 +90,6 @@ namespace BL
             container= accesoDatos.ConsultaGeneral(query, ref msg);
             return container;
         }
-
-       public string InsertarMouse(Mouse nuevo)
-        {
-            return ObjetoDal.InsertarMouse(nuevo); //insertar nuevos datos
-        }
         
-
     }
 }
