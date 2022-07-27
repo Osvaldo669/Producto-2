@@ -102,6 +102,13 @@ namespace BL
                         "join computadorafinal c on c.id_mong = monitor.id_monitor join Estado es on es.id_estado = c.Estado " +
                         "where monitor.tamano = @monitor";
                     break;
+                case "actualizacion":
+                    query = "select a.num_serie as 'N° de Serie', a.descripcion as 'Descripcion',a.fecha as 'Fecha'," +
+                        "c.num_inv as 'N° inventario',c.ubicacion as 'Ubicacion',c.imagen1 " +
+                        "from actualizacion a " +
+                        "join computadorafinal c on a.num_inv = c.num_inv " +
+                        "where a.num_inv = @clave";
+                    break;
             }
             data = accesoDatos.Innner_consulta(query,ref msg, parameters);
             return data;
