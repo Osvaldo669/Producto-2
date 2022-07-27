@@ -79,9 +79,11 @@
     <Content Include="Imagenes\ram.png" />
     <Content Include="Imagenes\ram1.jpg" />
     <Content Include="Imagenes\teclado.jpg" />
+    <Content Include="views\Actualizaciones\Actualizacion.aspx" />
     <Content Include="views\BuscarComputadora\Buscar-computadora.aspx" />
     <Content Include="views\Disco-Tipo\Disco-Tipo.aspx" />
     <Content Include="views\Lab-Com\Lab-Com.aspx" />
+    <Content Include="views\tipo-monitor\tipo_monitor.aspx" />
     <Content Include="Web.config" />
     <Content Include="Pruebas.aspx" />
   </ItemGroup>
@@ -93,6 +95,13 @@
     </Compile>
     <Compile Include="Pruebas.aspx.designer.cs">
       <DependentUpon>Pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\Actualizaciones\Actualizacion.aspx.cs">
+      <DependentUpon>Actualizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Actualizaciones\Actualizacion.aspx.designer.cs">
+      <DependentUpon>Actualizacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Disco-Tipo\Disco-Tipo.aspx.cs">
       <DependentUpon>Disco-Tipo.aspx</DependentUpon>
@@ -121,6 +130,13 @@
     </Compile>
     <Compile Include="views\Lab-Com\Lab-Com.aspx.designer.cs">
       <DependentUpon>Lab-Com.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\tipo-monitor\tipo_monitor.aspx.cs">
+      <DependentUpon>tipo_monitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\tipo-monitor\tipo_monitor.aspx.designer.cs">
+      <DependentUpon>tipo_monitor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
