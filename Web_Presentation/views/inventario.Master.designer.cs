@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Web_Presentation.master_page
+namespace Web_Presentation.views
 {
 
 
-    public partial class inventario
+    public partial class Site1
     {
 
         /// <summary>
