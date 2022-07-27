@@ -26,6 +26,7 @@ namespace Web_Presentation.views.Lab_Com
         {
             string msg = "";
             DataSet container = null;
+            List<SqlParameter> parametros = new List<SqlParameter>();
             if(Laboratorios.SelectedIndex == 0)
             {
                 Alerta.Visible = true;
@@ -34,12 +35,14 @@ namespace Web_Presentation.views.Lab_Com
             else
             {
                 Alerta.Visible = false;
+                
                 SqlParameter parameter = new SqlParameter("@clave", SqlDbType.VarChar, 64);
                 parameter.Value = Laboratorios.SelectedValue;
                 try
                 {
                     GridView1.Visible = true;
-                    container = bl.ConsultaJoin_Sencilla("lab", ref msg, parameter);
+                    parametros.Add(parameter);
+                    container = bl.ConsultaJoin_Sencilla("lab", ref msg, parametros);
                     GridView1.DataSource = container.Tables[0];
                     GridView1.DataBind();
                 }

@@ -57,7 +57,7 @@ namespace BL
             return data;
         }
 
-        public DataSet ConsultaJoin(ref string msg, List<SqlParameter> parameters)
+        public DataSet ConsultaJoin_sencilla(ref string msg, List<SqlParameter> parameters)
         {
             DataSet dataSet = null;
             string query = "select top 1 c.num_inv as 'Numero de inventario',mou.Marca as 'Mouse'," +
@@ -80,12 +80,10 @@ namespace BL
             return dataSet;
         }
 
-        public DataSet ConsultaJoin_Sencilla(string clave,ref string msg,SqlParameter parameter)
+        public DataSet ConsultaJoin_Sencilla(string clave,ref string msg, List<SqlParameter> parameters)
         {
             DataSet data = null;
             string query = "";
-            List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(parameter);
             switch (clave)
             {
                 case "lab":
@@ -93,13 +91,18 @@ namespace BL
                     "imagen1 from computadorafinal join Estado es on es.id_estado = computadorafinal.Estado " +
                     "where computadorafinal.ubicacion = @clave";
                     break;
+
+                case "disco":
+                    query = "Select TipoDisco as 'Tipo',com.num_inv as 'N° de inventario',es.Estado 'Estado Computadora',com.imagen1 as 'Imagen'" +
+                        "from DiscoDuro join cantDisc cant on cant.id_Disco = DiscoDuro.id_Disco join computadorafinal com on cant.num_inv = com.num_inv " +
+                        "join Estado es on es.id_estado = com.Estado where DiscoDuro.TipoDisco = @disco and com.ubicacion = @lab";
+                    break;
             }
-
-
             data = accesoDatos.Innner_consulta(query,ref msg, parameters);
             return data;
         }
 
+        
 
 
 
