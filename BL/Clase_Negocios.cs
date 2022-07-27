@@ -49,6 +49,14 @@ namespace BL
             return container;
         }
 
+        public DataSet consultaSencilla(string query, ref string msg)
+        {
+            DataSet data = null;
+            List<SqlParameter> lista_Provisional = new List<SqlParameter>();
+            data = accesoDatos.Innner_consulta(query, ref msg, lista_Provisional);
+            return data;
+        }
+
         public DataSet ConsultaJoin(ref string msg, List<SqlParameter> parameters)
         {
             DataSet dataSet = null;
@@ -71,6 +79,27 @@ namespace BL
             dataSet = accesoDatos.Innner_consulta(query, ref msg, parameters);
             return dataSet;
         }
+
+        public DataSet ConsultaJoin_Sencilla(string clave,ref string msg,SqlParameter parameter)
+        {
+            DataSet data = null;
+            string query = "";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(parameter);
+            switch (clave)
+            {
+                case "lab":
+                    query = "select num_inv,es.Estado 'Estado Computadora'," +
+                    "imagen1 from computadorafinal join Estado es on es.id_estado = computadorafinal.Estado " +
+                    "where computadorafinal.ubicacion = @clave";
+                    break;
+            }
+
+
+            data = accesoDatos.Innner_consulta(query,ref msg, parameters);
+            return data;
+        }
+
 
 
 

@@ -80,6 +80,7 @@
     <Content Include="Imagenes\ram1.jpg" />
     <Content Include="Imagenes\teclado.jpg" />
     <Content Include="views\BuscarComputadora\Buscar-computadora.aspx" />
+    <Content Include="views\Lab-Com\Lab-Com.aspx" />
     <Content Include="Web.config" />
     <Content Include="Pruebas.aspx" />
   </ItemGroup>
@@ -105,6 +106,13 @@
     </Compile>
     <Compile Include="views\BuscarComputadora\Buscar-computadora.aspx.designer.cs">
       <DependentUpon>Buscar-computadora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\Lab-Com\Lab-Com.aspx.cs">
+      <DependentUpon>Lab-Com.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Lab-Com\Lab-Com.aspx.designer.cs">
+      <DependentUpon>Lab-Com.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
