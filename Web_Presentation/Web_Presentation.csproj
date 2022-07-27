@@ -79,25 +79,11 @@
     <Content Include="Imagenes\ram.png" />
     <Content Include="Imagenes\ram1.jpg" />
     <Content Include="Imagenes\teclado.jpg" />
-    <Content Include="Inventario_compu.aspx" />
+    <Content Include="views\BuscarComputadora\Buscar-computadora.aspx" />
     <Content Include="Web.config" />
     <Content Include="Pruebas.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inventario_compu.aspx.cs">
-      <DependentUpon>Inventario_compu.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inventario_compu.aspx.designer.cs">
-      <DependentUpon>Inventario_compu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="views\inventario.Master.cs">
-      <DependentUpon>inventario.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="views\inventario.Master.designer.cs">
-      <DependentUpon>inventario.Master</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pruebas.aspx.cs">
       <DependentUpon>Pruebas.aspx</DependentUpon>
@@ -106,10 +92,24 @@
     <Compile Include="Pruebas.aspx.designer.cs">
       <DependentUpon>Pruebas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="views\inventario.Master.cs">
+      <DependentUpon>inventario.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\inventario.Master.designer.cs">
+      <DependentUpon>inventario.Master</DependentUpon>
+    </Compile>
+    <Compile Include="views\BuscarComputadora\Buscar-computadora.aspx.cs">
+      <DependentUpon>Buscar-computadora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\BuscarComputadora\Buscar-computadora.aspx.designer.cs">
+      <DependentUpon>Buscar-computadora.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="views\inventario.Master" />
     <None Include="packages.config" />
+    <Content Include="views\inventario.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -127,6 +127,7 @@
       <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
