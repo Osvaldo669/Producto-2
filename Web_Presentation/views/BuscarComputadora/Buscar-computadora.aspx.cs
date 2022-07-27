@@ -41,7 +41,7 @@ namespace Web_Presentation.views
                 {
                     parameter.Value = Buscar_Computadora_textbox.Text;
                     sqls.Add(parameter);
-                    data = bl.ConsultaJoin_sencilla(ref msg, sqls);
+                    data = bl.ConsultaJoin(ref msg, sqls);
                     table = data.Tables[0];
                     if (table.Rows.Count > 0)
                     {
