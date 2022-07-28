@@ -114,6 +114,89 @@ namespace BL
             return data;
         }
 
+        public bool EliminarItem(string clave,ref string msg, string parametro)
+        {
+            bool resultado = false;
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            string query = "";
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@id";
+            switch (clave)
+            {
+                case "Componente":
+                    parameter.Value = Convert.ToInt32(parametro);
+                     query = "delete  from Componente where Id_Componente=@id";
+                        break;
+                case "Marca":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from Marca where Id_Marca =@id";
+                    break;
+                case "Monitor":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from Monitor where id_monitor =@id";
+                    break;
+                case "Teclado":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from teclado where id_teclado =@id";
+                    break;
+                case "Mouse"://Metodo funcionando
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete from mouse where id_mouse=@id";
+                    break;
+                case "Gabinete":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from Gabinete where id_Gabinete =@id";
+                    break;
+                case "Disco Duro":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from DiscoDuro where id_Disco =@id";
+                    break;
+                case "Modelo CPU":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from ModeloCpu where id_modcpu =@id";
+                    break;
+                case "Tipo CPU":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from Tipo_Cpu where id_Tcpu =@id";
+                    break;
+                case "Tipo RAM":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from TipoRAM where id_tipoRam =@id";
+                    break;
+                case "RAM":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from RAM where id_RAM =@id";
+                    break;
+                case "CPU Génerico":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from CPU_Generico where id_CPU =@id";
+                    break;
+                case "Actualización":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from actualizacion where id_act =@id";
+                    break;
+                case "Laboratorio":
+                    parameter.Value = parametro;
+                    query = "delete  from laboratorio where nombre_laboratorio =@id";
+                    break;
+                case "Ubicación":
+                    parameter.Value = parametro;
+                    query = "delete  from ubicacion where num_inv =@id";
+                    break;
+                case "Computadora Final":
+                    parameter.Value = parametro;
+                    query = "delete  from computadorafinal where num_inv =@id";
+                    break;
+                case "Cantidad de disco duro":
+                    parameter.Value = Convert.ToInt32(parametro);
+                    query = "delete  from cantDisc where id_cant =@id";
+                    break;
+            }
+            parameters.Add(parameter);
+
+            resultado = accesoDatos.Operaciones_Tables(query,ref msg, parameters);
+            return resultado;
+        }
         
 
 
