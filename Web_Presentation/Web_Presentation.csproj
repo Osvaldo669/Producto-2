@@ -82,6 +82,7 @@
     <Content Include="views\Actualizaciones\Actualizacion.aspx" />
     <Content Include="views\BuscarComputadora\Buscar-computadora.aspx" />
     <Content Include="views\Disco-Tipo\Disco-Tipo.aspx" />
+    <Content Include="views\Formularios\Mouse.aspx" />
     <Content Include="views\Lab-Com\Lab-Com.aspx" />
     <Content Include="views\tipo-monitor\tipo_monitor.aspx" />
     <Content Include="Web.config" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="views\Disco-Tipo\Disco-Tipo.aspx.designer.cs">
       <DependentUpon>Disco-Tipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="views\Formularios\Mouse.aspx.cs">
+      <DependentUpon>Mouse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Formularios\Mouse.aspx.designer.cs">
+      <DependentUpon>Mouse.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\inventario.Master.cs">
       <DependentUpon>inventario.Master</DependentUpon>
