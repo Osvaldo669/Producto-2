@@ -1,26 +1,25 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/views/inventario.Master" AutoEventWireup="true" CodeBehind="Mouse.aspx.cs" Inherits="Web_Presentation.views.Formularios.Mouse" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/views/inventario.Master" AutoEventWireup="true" CodeBehind="Teclado.aspx.cs" Inherits="Web_Presentation.views.Formularios.Teclado" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top:3%">
-        <h5>Inserta el mouse</h5>
+        <h5>Inserta el teclado</h5>
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Identificador del Mouse</label>
-                    <input type="number" class="form-control" id="inlineFormInput" placeholder="Identificador del Mouse">
+                    <label for="inlineFormInput">Identificador del Teclado</label>
+                    <input type="number" class="form-control" id="inlineFormInput" placeholder="Identificador del Teclado">
                 </div>
             </div>
                 <div class="form-group col-md-6">
-                    <label for="inputState">Marca Mouse</label>
+                    <label for="inputState">Marca Teclado</label>
                     <select id="inputState" class="form-control">
                         <option selected>Elegir</option>
-                        <option>Logitech G502 Hero.</option>
-                        <option>Steel Series Sensei 310.</option>
-                        <option>Logitech G305 Lightspeed. </option>
-                        <option>Razer Deathadder V2.</option>
-                        <option>Corsair M65.</option>
+                        <option>Gear4music.</option>
+                        <option>Casio.</option>
+                        <option>Korg.</option>
+                        <option>Roland.</option>
+                        <option>Yamaha.</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
