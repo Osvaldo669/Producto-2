@@ -197,6 +197,9 @@ namespace BL
             resultado = accesoDatos.Operaciones_Tables(query,ref msg, parameters);
             return resultado;
         }
+
+
+
         
 
 

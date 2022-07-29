@@ -15,7 +15,7 @@ namespace Web_Presentation.views.Operaciones
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataSet contenedor = new DataSet();
         string msg ="";
-
+        int tab = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -26,8 +26,9 @@ namespace Web_Presentation.views.Operaciones
             }
             else {
                 contenedor = (DataSet)Session["Datos"];
+                tab = (int)Session["Tabla_num"];
             }
-           
+                      
         }
 
         protected void Consultar_Click(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace Web_Presentation.views.Operaciones
                 
                 int tabla = Query.SelectedIndex - 1;
                 Label1.Text = Query.SelectedValue;
+                Session["Tabla_num"] = tabla;
                 GridView1.DataSource = contenedor.Tables[tabla];
                 GridView1.DataBind();
             }
@@ -52,6 +54,7 @@ namespace Web_Presentation.views.Operaciones
             {
                 contenedor = bl.Consulta_General(ref msg);
                 Session["Datos"] = contenedor;
+                Session["Tabla_num"] = tab;
             }
             catch (Exception ex)
             {
@@ -100,10 +103,9 @@ namespace Web_Presentation.views.Operaciones
                 {
                     MessageBox(this, msg);
                     ObtenerDatos();
-                    int tabla = Query.SelectedIndex - 1;
-                    Label1.Text = Query.SelectedValue;
-                    GridView1.DataSource = contenedor.Tables[tabla];
-                    GridView1.DataBind();
+                    Label1.Text = Label1.Text;
+                    LlenarGrid();
+                    
                 }
                 else
                 {
@@ -118,17 +120,10 @@ namespace Web_Presentation.views.Operaciones
 
         }
 
-        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        private void LlenarGrid()
         {
-            GridView1.EditIndex = e.NewEditIndex;
-            ObtenerDatos();
-
-        }
-
-        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            GridView1.EditIndex = -1;
-            ObtenerDatos();
+            GridView1.DataSource = contenedor.Tables[tab];
+            GridView1.DataBind();
         }
     }
 }
