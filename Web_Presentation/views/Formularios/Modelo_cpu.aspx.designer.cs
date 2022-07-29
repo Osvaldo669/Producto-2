@@ -11,7 +11,7 @@ namespace Web_Presentation.views.Formularios
 {
 
 
-    public partial class Modelo_CPU
+    public partial class Modelo_cpu
     {
 
         /// <summary>
@@ -67,5 +67,14 @@ namespace Web_Presentation.views.Formularios
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

@@ -2,36 +2,39 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="margin-top:3%">
-        <h5>Inserta el Monitor</h5>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Identificador del Monitor</label>
-                    <input type="number" class="form-control" id="inlineFormInput" placeholder="Identificador del Monitor">
+    <div class="container" style="margin-top: 3%">
+        <div class="card alert alert-success">
+            <h5 class="card-header">Inserta el monitor</h5>
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <asp:Label ID="Label1" runat="server" Text="Identificador Monitor"></asp:Label>
+                                <asp:TextBox ID="TextBox1" type="number" runat="server" placeholder="Inserta el Identificador Monitor" Width="725px"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <asp:Label ID="Label2" runat="server" Text="Marca monitor"></asp:Label>
+                                <br />
+                                <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="725px"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="Label3" runat="server" Text="Conector"></asp:Label>
+                            <asp:TextBox ID="TextBox2" type="number" runat="server" placeholder="Inserta el conector" Width="725px"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="Label4" runat="server" Text="Tamaño"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="DropDownList2" runat="server" Height="35px" Width="725px"></asp:DropDownList>
+                        </div>
+                        <br />
+                        <asp:Button ID="Button1" runat="server" CssClass=" btn btn-success" Text="Guardar" />
+                    </form>
                 </div>
             </div>
-                <div class="form-group col-md-6">
-                    <label for="inputState">Marca Monitor</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Elegir</option>
-                        <option>Asus</option>
-                        <option>Acer</option>
-                        <option>Benq</option>
-                        <option>AOC</option>
-                        <option>Samsung</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Conector</label>
-                    <input type="text" class="form-control" id="conectormonitor" placeholder="Conector">
-                </div>
-               <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Tamaño</label>
-                    <input type="text" class="form-control" id="tamañoCone" placeholder="Tamaño">
-                </div>
-            <br/>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
+        </div>
     </div>
 </asp:Content>

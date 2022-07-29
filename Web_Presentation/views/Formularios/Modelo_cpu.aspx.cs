@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Web_Presentation.views.Formularios
 {
-    public partial class Modelo_CPU : System.Web.UI.Page
+    public partial class Modelo_cpu : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

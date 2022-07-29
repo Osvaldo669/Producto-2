@@ -2,36 +2,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="margin-top:3%">
-        <h5>Inserta el Gabinete</h5>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Identificador del Gabinete</label>
-                    <input type="number" class="form-control" id="inlineFormInput" placeholder="Identificador del Gabinete">
+    <div class="container" style="margin-top: 3%">
+        <div class="card alert alert-success">
+            <h5 class="card-header">Inserta el Gabinete</h5>
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <asp:Label ID="Label1" runat="server" Text="Identificador de Gabinete"></asp:Label>
+                                <asp:TextBox ID="TextBox1" type="number" runat="server" placeholder="Inserta el Identificador de Gabinete" Width="725px"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="Label2" runat="server" Text="Modelo"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="725px"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="Label3" runat="server" Text="Marca Mouse"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="DropDownList2" runat="server" Height="35px" Width="725px"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <asp:Label ID="Label4" runat="server" Text="Tipo forma"></asp:Label>
+                            <asp:TextBox ID="TextBox2" runat="server" placeholder="Inserta el Tipo forma" Width="725px"></asp:TextBox>
+                        </div>
+                        <br />
+                        <asp:Button ID="Button1" runat="server" CssClass=" btn btn-success" Text="Guardar" />
+                    </form>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="inlineFormInput">Modelo</label>
-                <input type="text" class="form-control" id="GabiMode" placeholder="Modelo">
-            </div>
-                <div class="form-group col-md-6">
-                    <label for="inputState">Marca Mouse</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Elegir</option>
-                        <option>Corsair.</option>
-                        <option>Cooler Master.</option>
-                        <option>SilverStone.</option>
-                        <option>NZXT.</option>
-                        <option>Phanteks.</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inlineFormInput">Tipo forma</label>
-                    <input type="text" class="form-control" id="inlineForm" placeholder="Tipo forma">
-                </div>
-            <br/>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
+        </div>
     </div>
 </asp:Content>

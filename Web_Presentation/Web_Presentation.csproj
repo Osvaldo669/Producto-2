@@ -87,17 +87,17 @@
     <Content Include="views\Formularios\Componente.aspx" />
     <Content Include="views\Formularios\ComputadoraFinal.aspx" />
     <Content Include="views\Formularios\CPU_Generico.aspx" />
-    <Content Include="views\Formularios\Disco Duro.aspx" />
+    <Content Include="views\Formularios\Disco_Duro.aspx" />
     <Content Include="views\Formularios\Gabinete.aspx" />
     <Content Include="views\Formularios\Laboratorio.aspx" />
     <Content Include="views\Formularios\Marca.aspx" />
-    <Content Include="views\Formularios\Modelo CPU.aspx" />
+    <Content Include="views\Formularios\Modelo_CPU.aspx" />
     <Content Include="views\Formularios\Monitor.aspx" />
     <Content Include="views\Formularios\Mouse.aspx" />
     <Content Include="views\Formularios\Ram.aspx" />
     <Content Include="views\Formularios\Teclado.aspx" />
-    <Content Include="views\Formularios\Tipo Cpu.aspx" />
-    <Content Include="views\Formularios\Tipo Ram.aspx" />
+    <Content Include="views\Formularios\Tipo_Cpu.aspx" />
+    <Content Include="views\Formularios\Tipo_Ram.aspx" />
     <Content Include="views\Formularios\Ubicación.aspx" />
     <Content Include="views\Lab-Com\Lab-Com.aspx" />
     <Content Include="views\tipo-monitor\tipo_monitor.aspx" />
@@ -162,12 +162,12 @@
     <Compile Include="views\Formularios\CPU_Generico.aspx.designer.cs">
       <DependentUpon>CPU_Generico.aspx</DependentUpon>
     </Compile>
-    <Compile Include="views\Formularios\Disco Duro.aspx.cs">
-      <DependentUpon>Disco Duro.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Disco_Duro.aspx.cs">
+      <DependentUpon>Disco_Duro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="views\Formularios\Disco Duro.aspx.designer.cs">
-      <DependentUpon>Disco Duro.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Disco_Duro.aspx.designer.cs">
+      <DependentUpon>Disco_Duro.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Formularios\Gabinete.aspx.cs">
       <DependentUpon>Gabinete.aspx</DependentUpon>
@@ -190,12 +190,12 @@
     <Compile Include="views\Formularios\Marca.aspx.designer.cs">
       <DependentUpon>Marca.aspx</DependentUpon>
     </Compile>
-    <Compile Include="views\Formularios\Modelo CPU.aspx.cs">
-      <DependentUpon>Modelo CPU.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Modelo_cpu.aspx.cs">
+      <DependentUpon>Modelo_CPU.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="views\Formularios\Modelo CPU.aspx.designer.cs">
-      <DependentUpon>Modelo CPU.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Modelo_cpu.aspx.designer.cs">
+      <DependentUpon>Modelo_CPU.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Formularios\Monitor.aspx.cs">
       <DependentUpon>Monitor.aspx</DependentUpon>
@@ -225,19 +225,19 @@
     <Compile Include="views\Formularios\Teclado.aspx.designer.cs">
       <DependentUpon>Teclado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="views\Formularios\Tipo Cpu.aspx.cs">
-      <DependentUpon>Tipo Cpu.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Tipo_Cpu.aspx.cs">
+      <DependentUpon>Tipo_Cpu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="views\Formularios\Tipo Cpu.aspx.designer.cs">
-      <DependentUpon>Tipo Cpu.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Tipo_Cpu.aspx.designer.cs">
+      <DependentUpon>Tipo_Cpu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="views\Formularios\Tipo Ram.aspx.cs">
-      <DependentUpon>Tipo Ram.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Tipo_Ram.aspx.cs">
+      <DependentUpon>Tipo_Ram.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="views\Formularios\Tipo Ram.aspx.designer.cs">
-      <DependentUpon>Tipo Ram.aspx</DependentUpon>
+    <Compile Include="views\Formularios\Tipo_Ram.aspx.designer.cs">
+      <DependentUpon>Tipo_Ram.aspx</DependentUpon>
     </Compile>
     <Compile Include="views\Formularios\Ubicación.aspx.cs">
       <DependentUpon>Ubicación.aspx</DependentUpon>
