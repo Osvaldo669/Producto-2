@@ -186,13 +186,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
-        /// Control TextBox10.
+        /// Control DropDownList1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
         /// Control Label11.
@@ -204,13 +204,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
-        /// Control TextBox11.
+        /// Control Image1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
         /// Control Label12.
@@ -222,13 +222,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label12;
 
         /// <summary>
-        /// Control TextBox12.
+        /// Control Image2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.Image Image2;
 
         /// <summary>
         /// Control Label13.
@@ -240,13 +240,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label13;
 
         /// <summary>
-        /// Control TextBox13.
+        /// Control Image3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.Image Image3;
 
         /// <summary>
         /// Control Button1.
