@@ -229,7 +229,7 @@ namespace BL
                     break;
 
                 case "Disco Duro":
-                    query = "";
+                    query = "insert into DiscoDuro values(@tipo,@conector,@capacidad,@marca,@extra);";
                     break;
 
                 case "Modelo CPU":
@@ -237,7 +237,7 @@ namespace BL
                     break;
 
                 case "Tipo CPU":
-                    query = "";
+                    query = "insert into Tipo_CPU values(@tipo,@fam,@vel,@extra,@modelo);";
                     break;
 
                 case "Tipo RAM":
