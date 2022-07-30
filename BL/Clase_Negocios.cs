@@ -205,24 +205,25 @@ namespace BL
             switch (clave)
             {
                 case "Componente":
-
                     query = "";
                     break;
+
                 case "Marca":
-
                     query = "";
                     break;
+
                 case "Monitor":
-
-                    query = "";
+                    query = "insert into monitor values(@marca,@conector,@tamano);";
                     break;
+
                 case "Teclado":
-
                     query = "";
                     break;
+
                 case "Mouse":
                     query = "insert into mouse values(@marca, @conector)";
                     break;
+
                 case "Gabinete":
 
                     query = "";
@@ -271,6 +272,18 @@ namespace BL
             }
             resultado = accesoDatos.Operaciones_Tables(query, ref msg, sqlParameters);
             return resultado;
+        }
+
+        public DataTable getMarca( ref string msg,int parametro)
+        {
+            string query = "select m.Id_Marca as 'ID', Marca from marca m join Componente c on c.Id_Componente=m.f_Id_Componente where f_Id_Componente=@id";
+            DataTable data;
+            List<SqlParameter> lista_Provisional = new List<SqlParameter>();
+            SqlParameter sqlparametro = new SqlParameter("@id",SqlDbType.Int);
+            sqlparametro.Value=parametro;
+            lista_Provisional.Add(sqlparametro);
+            data = accesoDatos.Innner_consulta(query, ref msg, lista_Provisional).Tables[0];
+            return data;
         }
 
 

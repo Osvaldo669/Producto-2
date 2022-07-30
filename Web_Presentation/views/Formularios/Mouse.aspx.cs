@@ -67,10 +67,9 @@ namespace Web_Presentation.views.Formularios
         private void LlenarDropDown()
         {
             string msg = "";
-            string query = "select m.Id_Marca as 'ID', Marca from marca m join Componente c on c.Id_Componente=m.f_Id_Componente where f_Id_Componente=3";
             try
             {
-                contenedor = bl.consultaSencilla(query, ref msg).Tables[0];
+                contenedor = bl.getMarca(ref msg, 3);
                 Marcas_drop.Items.Add("---Seleccione una opcion---");
                 Tipos_usb_drop.Items.Add("---Seleccione una opcion---");
                 Tipos_usb_drop.Items.Add("PS27");
