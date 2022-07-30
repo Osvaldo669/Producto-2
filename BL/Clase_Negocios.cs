@@ -198,6 +198,80 @@ namespace BL
             return resultado;
         }
 
+        public bool InsertarItem(string clave, ref string msg, List<SqlParameter> sqlParameters)
+        {
+            bool resultado = false;
+            string query = "";
+            switch (clave)
+            {
+                case "Componente":
+
+                    query = "";
+                    break;
+                case "Marca":
+
+                    query = "";
+                    break;
+                case "Monitor":
+
+                    query = "";
+                    break;
+                case "Teclado":
+
+                    query = "";
+                    break;
+                case "Mouse":
+                    query = "insert into mouse values(@marca, @conector)";
+                    break;
+                case "Gabinete":
+
+                    query = "";
+                    break;
+                case "Disco Duro":
+
+                    query = "";
+                    break;
+                case "Modelo CPU":
+                    query = "";
+                    break;
+                case "Tipo CPU":
+
+                    query = "";
+                    break;
+                case "Tipo RAM":
+                    query = "";
+                    break;
+                case "RAM":
+
+                    query = "";
+                    break;
+                case "CPU Génerico":
+
+                    query = "";
+                    break;
+                case "Actualización":
+
+                    query = "";
+                    break;
+                case "Laboratorio":
+
+                    query = "";
+                    break;
+                case "Ubicación":
+
+                    query = "";
+                    break;
+                case "Computadora Final":
+
+                    query = "";
+                    break;
+                case "Cantidad de disco duro":
+                    query = "";
+                    break;
+            }
+            resultado = accesoDatos.Operaciones_Tables(query, ref msg, sqlParameters);
+            return resultado;
+        }
 
 
         
