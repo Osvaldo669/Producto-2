@@ -205,7 +205,7 @@ namespace BL
             switch (clave)
             {
                 case "Componente":
-                    query = "";
+                    query = "insert into Componente values(@componente,@extra)";
                     break;
 
                 case "Marca":
@@ -254,10 +254,11 @@ namespace BL
 
                     query = "";
                     break;
-                case "Laboratorio":
 
-                    query = "";
+                case "Laboratorio":
+                    query = "insert into laboratorio values(@lab);";
                     break;
+
                 case "Ubicación":
 
                     query = "";
