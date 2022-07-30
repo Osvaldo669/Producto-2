@@ -233,14 +233,15 @@ namespace BL
                     query = "";
                     break;
                 case "Modelo CPU":
-                    query = "";
+                    query = "insert into ModeloCPU values (@modelo,@marca)";
                     break;
+
                 case "Tipo CPU":
 
                     query = "";
                     break;
                 case "Tipo RAM":
-                    query = "";
+                    query = "insert into TipoRAM values(@tipo,@extra);";
                     break;
                 case "RAM":
 
