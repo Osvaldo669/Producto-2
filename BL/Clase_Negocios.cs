@@ -225,34 +225,34 @@ namespace BL
                     break;
 
                 case "Gabinete":
-
-                    query = "";
+                    query = "insert into Gabinete values(@modelo,@tipo, @marca);";
                     break;
+
                 case "Disco Duro":
-
                     query = "";
                     break;
+
                 case "Modelo CPU":
                     query = "insert into ModeloCPU values (@modelo,@marca)";
                     break;
 
                 case "Tipo CPU":
-
                     query = "";
                     break;
+
                 case "Tipo RAM":
                     query = "insert into TipoRAM values(@tipo,@extra);";
                     break;
+
                 case "RAM":
-
-                    query = "";
+                    query = "insert into RAM values(@capacidad,@velocidad,@tipo)";
                     break;
+
                 case "CPU Génerico":
-
                     query = "";
                     break;
-                case "Actualización":
 
+                case "Actualización":
                     query = "";
                     break;
 
@@ -261,13 +261,13 @@ namespace BL
                     break;
 
                 case "Ubicación":
-
                     query = "";
                     break;
+
                 case "Computadora Final":
-
                     query = "";
                     break;
+
                 case "Cantidad de disco duro":
                     query = "";
                     break;

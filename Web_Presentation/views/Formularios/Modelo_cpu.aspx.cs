@@ -46,7 +46,7 @@ namespace Web_Presentation.views.Formularios
                 }
                 else
                 {
-                    MessageBox(this, "No existen Marcas que se asocian con marcas de tipo Teclado--- Agregue una marca de teclado primero");
+                    MessageBox(this, "No existen Marcas que se asocian con marcas de tipo CPU--- Agregue una marca de CPU primero");
                 }
             }
             catch (Exception ex)
