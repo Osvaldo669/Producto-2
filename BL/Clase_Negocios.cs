@@ -209,7 +209,7 @@ namespace BL
                     break;
 
                 case "Marca":
-                    query = "";
+                    query = "insert into Marca values(@marca,@componente,@extra);";
                     break;
 
                 case "Monitor":
@@ -217,7 +217,7 @@ namespace BL
                     break;
 
                 case "Teclado":
-                    query = "";
+                    query = "insert into teclado values(@marca,@conector)";
                     break;
 
                 case "Mouse":
