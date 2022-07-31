@@ -260,8 +260,8 @@ namespace BL
                     query = "insert into laboratorio values(@lab);";
                     break;
 
-                case "Ubicación":
-                    query = "";
+                case "Ubicacion":
+                    query = "insert into ubicacion values(@num,@lab);";
                     break;
 
                 case "Computadora Final":
@@ -269,7 +269,7 @@ namespace BL
                     break;
 
                 case "Cantidad de disco duro":
-                    query = "";
+                    query = "insert into cantDisc values(@num,@disc);";
                     break;
             }
             resultado = accesoDatos.Operaciones_Tables(query, ref msg, sqlParameters);
