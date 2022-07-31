@@ -78,10 +78,47 @@ namespace Web_Presentation.views.Formularios
         protected void guardar_Click(object sender, EventArgs e)
         {
             string msg = "";
-            if(Marca_DDL.SelectedIndex==0| tipos_DDL.SelectedIndex == 0 |
-                capacidad_DDL.SelectedIndex == 0 | conector_DDL.SelectedIndex == 0 )
+            List<SqlParameter> lista = getLista();
+
+            if (lista != null)
             {
-                Alerta.Visible = true;
+                try
+                {
+                    Alerta.Visible = false;
+                    bool resultado = bl.InsertarItem("Disco Duro", ref msg, lista);
+                    if (resultado)
+                    {
+                        MessageBox(this, msg);
+                        Marca_DDL.SelectedIndex = 0;
+                        tipos_DDL.SelectedIndex = 0;
+                        capacidad_DDL.SelectedIndex = 0;
+                        conector_DDL.SelectedIndex = 0;
+                        Extra.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox(this, "Error al insertar o realizar la operacion ");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
+            {
+                Alerta.Visible = true ;
+            }
+           
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (Marca_DDL.SelectedIndex == 0 | tipos_DDL.SelectedIndex == 0 |
+              capacidad_DDL.SelectedIndex == 0 | conector_DDL.SelectedIndex == 0)
+            {
+                lista = null;
             }
             else
             {
@@ -104,30 +141,10 @@ namespace Web_Presentation.views.Formularios
                 capacidad.Value = capacidad_DDL.SelectedValue;
                 conector.Value = conector_DDL.SelectedValue;
 
-                List<SqlParameter> lista = new List<SqlParameter>() { marca,tipo,conector,capacidad,extra };
-
-                try
-                {
-                    bool resultado = bl.InsertarItem("Disco Duro", ref msg, lista);
-                    if (resultado)
-                    {
-                        MessageBox(this, msg);
-                        Marca_DDL.SelectedIndex = 0;
-                        tipos_DDL.SelectedIndex = 0;
-                        capacidad_DDL.SelectedIndex = 0;
-                        conector_DDL.SelectedIndex = 0;
-                        Extra.Text = "";
-                    }
-                    else
-                    {
-                        MessageBox(this, "Error al insertar o realizar la operacion ");
-                    }
-                }
-                catch(Exception ex)
-                {
-                    MessageBox(this, "Error: " + ex.Message);
-                }
+                lista = new List<SqlParameter>() { marca, tipo, conector, capacidad, extra };
             }
+            return lista;
         }
+       
     }
 }

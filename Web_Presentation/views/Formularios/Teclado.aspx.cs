@@ -29,24 +29,12 @@ namespace Web_Presentation.views.Formularios
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
-            if(Marca.SelectedIndex == 0 | Conector.SelectedIndex == 0)
-            {
-                Alerta.Visible = true;
-            }
-            else
-            {
-                Alerta.Visible = false;
-                bool resultado = false;
-                string msg = "";
-                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
-                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
-                marca.Value = Convert.ToInt16(Marca.SelectedItem.Value);
-                conector.Value = Conector.SelectedValue;
-                List<SqlParameter> lista = new List<SqlParameter>()
-                {
-                    marca,conector
-                };
+            bool resultado = false;
+            string msg = "";
+            List<SqlParameter> lista = getLista();
 
+            if (lista != null) {
+                Alerta.Visible = true;
                 try
                 {
                     resultado = bl.InsertarItem("Teclado", ref msg, lista);
@@ -64,6 +52,31 @@ namespace Web_Presentation.views.Formularios
                     MessageBox(this, msg);
                 }
             }
+            else
+            {
+                Alerta.Visible = true;
+            }
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (Marca.SelectedIndex == 0 | Conector.SelectedIndex == 0)
+            {
+                lista = null;
+            }
+            else
+            {
+                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
+                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
+                marca.Value = Convert.ToInt16(Marca.SelectedItem.Value);
+                conector.Value = Conector.SelectedValue;
+                lista = new List<SqlParameter>()
+                {
+                    marca,conector
+                };
+            }
+            return lista;
         }
 
         private void LlenarDrops()

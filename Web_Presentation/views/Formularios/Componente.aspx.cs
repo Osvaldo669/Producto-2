@@ -25,32 +25,12 @@ namespace Web_Presentation.views.Formularios
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
+            List<SqlParameter> lista = getLista();
             string msg = "";
-            if (String.IsNullOrEmpty(Componente_textB.Text) | Componente_textB.Text == "")
+            bool resultado = false;
+            if (lista != null)
             {
                 Alerta.Visible = false;
-            }
-            else
-            {
-                bool resultado = false;
-                SqlParameter componente = new SqlParameter("@componente", SqlDbType.VarChar);
-                SqlParameter extra = new SqlParameter("@extra", SqlDbType.VarChar);
-
-                componente.Value = Componente_textB.Text;
-                if (String.IsNullOrEmpty(Extra.Text))
-                {
-                    extra.Value = "";
-                }
-                else
-                {
-                    extra.Value = Extra.Text;
-                }
-
-                List<SqlParameter> lista = new List<SqlParameter>()
-                {
-                    componente,extra
-                };
-
                 try
                 {
                     resultado = bl.InsertarItem("Componente", ref msg, lista);
@@ -68,11 +48,45 @@ namespace Web_Presentation.views.Formularios
                     MessageBox(this, msg);
                 }
             }
+            else
+            {
+                Alerta.Visible = true;
+            }
 
         }
         public static void MessageBox(System.Web.UI.Page page, string Msg)
         {
             ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "alertMessage", "alert('" + Msg + "')", true);
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (String.IsNullOrEmpty(Componente_textB.Text) | Componente_textB.Text == "")
+            {
+                lista = null;
+            }
+            else
+            {
+                SqlParameter componente = new SqlParameter("@componente", SqlDbType.VarChar);
+                SqlParameter extra = new SqlParameter("@extra", SqlDbType.VarChar);
+
+                componente.Value = Componente_textB.Text;
+                if (String.IsNullOrEmpty(Extra.Text))
+                {
+                    extra.Value = "";
+                }
+                else
+                {
+                    extra.Value = Extra.Text;
+                }
+
+                lista = new List<SqlParameter>()
+                {
+                    componente,extra
+                };
+            }
+            return lista;
         }
     }
 }

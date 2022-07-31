@@ -74,56 +74,72 @@ namespace Web_Presentation.views.Formularios
         {
             string msg = "";
             bool resultado = false;
-            if(capacidad.SelectedIndex==0 | tipos.SelectedIndex==0 | String.IsNullOrEmpty(Velocidad.Text)) {
+            List<SqlParameter> lista = getLista();
+
+            if (lista != null)
+            {
+                Alerta.Visible = false;
+                try
+                {
+                    resultado = bl.InsertarItem("RAM", ref msg, lista);
+                    if (resultado)
+                    {
+                        MessageBox(this, msg);
+                        Velocidad.Text = "";
+                        tipos.SelectedIndex = 0;
+                        capacidad.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        MessageBox(this, "Error, no se pudo insertar");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
+            {
                 Alerta.Visible = true;
+            }
+
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (capacidad.SelectedIndex == 0 | tipos.SelectedIndex == 0 | String.IsNullOrEmpty(Velocidad.Text))
+            {
+                lista = null;
             }
             else
             {
                 string cadena = Velocidad.Text.Replace(" ", string.Empty);
                 if (cadena.Length == 0)
                 {
-                    Alerta.Visible = true;
+                    lista = null;
                     Velocidad.Text = "";
                 }
                 else
                 {
                     if (Velocidad.Text == "")
-                        Alerta.Visible = true;
+                        lista = null;
                     else
                     {
-                        SqlParameter cap = new SqlParameter("@capacidad",SqlDbType.SmallInt);
-                        SqlParameter vel = new SqlParameter("@velocidad",SqlDbType.VarChar);
-                        SqlParameter tipo = new SqlParameter("@tipo",SqlDbType.Int);
+                        SqlParameter cap = new SqlParameter("@capacidad", SqlDbType.SmallInt);
+                        SqlParameter vel = new SqlParameter("@velocidad", SqlDbType.VarChar);
+                        SqlParameter tipo = new SqlParameter("@tipo", SqlDbType.Int);
 
                         cap.Value = capacidad.SelectedValue;
                         vel.Value = Velocidad.Text.Trim();
                         tipo.Value = tipos.SelectedValue;
 
-                        List<SqlParameter> lista = new List<SqlParameter>() { cap,vel,tipo };
-
-                        try
-                        {
-                            resultado = bl.InsertarItem("RAM", ref msg, lista);
-                            if (resultado)
-                            {
-                                MessageBox(this, msg);
-                                Velocidad.Text = "";
-                                tipos.SelectedIndex = 0;
-                                capacidad.SelectedIndex = 0;
-                            }
-                            else
-                            {
-                                Response.Write(lista[0]);
-                                //MessageBox(this, "Error, no se pudo insertar");
-                            }
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox(this, "Error: " + ex.Message);
-                        }
+                        lista = new List<SqlParameter>() { cap, vel, tipo };
                     }
                 }
             }
+            return lista;
         }
     }
 }

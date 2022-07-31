@@ -25,9 +25,42 @@ namespace Web_Presentation.views.Formularios
         {
             bool resultado = false;
             string msg = "";
-            if (String.IsNullOrEmpty(laboratorio_text.Text)|laboratorio_text.Text=="")
+            List<SqlParameter> lista = getLista();
+
+            if (lista != null)
+            {
+                Alerta.Visible = false;
+                try
+                {
+                    resultado = bl.InsertarItem("Laboratorio", ref msg, lista);
+                    if (resultado)
+                    {
+                        MessageBox(this, msg);
+                        laboratorio_text.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox(this, "Error al insertar el item");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
             {
                 Alerta.Visible = true;
+            }
+
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (String.IsNullOrEmpty(laboratorio_text.Text) | laboratorio_text.Text == "")
+            {
+                lista = null;
             }
             else
             {
@@ -35,42 +68,29 @@ namespace Web_Presentation.views.Formularios
                 {
                     MessageBox(this, "El nombre del laboratorio solo debe tener una logitud de 2 caracteres");
                     laboratorio_text.Text = "";
+                    lista = null;
                 }
                 else
                 {
                     string cadena = laboratorio_text.Text;
                     cadena = cadena.Replace(" ", string.Empty);
-                    if(cadena.Length == 0)
+                    if (cadena.Length == 0)
                     {
                         MessageBox(this, "Llene correctamente el textbox");
                         laboratorio_text.Text = "";
+                        lista = null;
                     }
                     else
                     {
-                        Alerta.Visible = false;
                         SqlParameter laboratorio = new SqlParameter("@lab", System.Data.SqlDbType.VarChar);
 
                         laboratorio.Value = cadena;
 
-                        List<SqlParameter> lista = new List<SqlParameter>() { laboratorio };
-
-                        try
-                        {
-                            resultado = bl.InsertarItem("Laboratorio", ref msg, lista);
-                            if (resultado)
-                                MessageBox(this, msg);
-                            else
-                            {
-                                MessageBox(this, "Error al insertar el item");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox(this, "Error: " + ex.Message);
-                        }
+                       lista = new List<SqlParameter>() { laboratorio };
                     }
                 }
             }
+            return lista;
         }
         public static void MessageBox(System.Web.UI.Page page, string Msg)
         {

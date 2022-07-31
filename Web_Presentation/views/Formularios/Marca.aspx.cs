@@ -27,14 +27,43 @@ namespace Web_Presentation.views.Formularios
         {
             string msg = "";
             bool resultado = false;
-            if (String.IsNullOrEmpty(Marca_text.Text) | Marca_text.Text=="" | Componente.SelectedIndex ==0)
+            List<SqlParameter> lista = getLista();
+            if (lista != null)
             {
-                Alerta.Visible = true;
+                Alerta.Visible = false;
+                try
+                {
+                    resultado = bl.InsertarItem("Marca", ref msg, lista);
+                    if (resultado)
+                    {
+                        MessageBox(this, msg);
+                        Marca_text.Text = "";
+                        Extra.Text = "";
+                    }
+                    else
+                        MessageBox(this, "Error al insertar los datos");
+                    Componente.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
             }
             else
             {
-                Alerta.Visible = false;
+                Alerta.Visible = true;
+            }
+        }
 
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (String.IsNullOrEmpty(Marca_text.Text) | Marca_text.Text == "" | Componente.SelectedIndex == 0)
+            {
+                lista = null;
+            }
+            else
+            {
                 SqlParameter marca = new SqlParameter("@marca", SqlDbType.VarChar);
                 SqlParameter componente = new SqlParameter("@componente", SqlDbType.Int);
                 SqlParameter extra = new SqlParameter("@extra", SqlDbType.VarChar);
@@ -50,28 +79,10 @@ namespace Web_Presentation.views.Formularios
                     extra.Value = Extra.Text;
                 }
 
-                List<SqlParameter> lista = new List<SqlParameter>()
+                lista = new List<SqlParameter>()
                 { marca,componente,extra};
-
-                try
-                {
-                    resultado = bl.InsertarItem("Marca", ref msg, lista);
-                    if (resultado)
-                    {
-                        MessageBox(this, msg);
-                        Marca_text.Text = "";
-                        Extra.Text = "";
-                    }
-                    else
-                        MessageBox(this, msg);
-                    Componente.SelectedIndex = 0;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox(this, "Error: " + ex.Message);
-                }
-
             }
+            return lista;
         }
 
         private void LlenarDrops()

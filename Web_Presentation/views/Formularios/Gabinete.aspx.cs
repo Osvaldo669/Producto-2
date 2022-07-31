@@ -69,9 +69,39 @@ namespace Web_Presentation.views.Formularios
         {
             string msg = "";
             bool resultado = false;
-            if (Marca_DDL.SelectedIndex == 0 | Tipo_DDL.SelectedIndex == 0 | String.IsNullOrEmpty(Modelo_TB.Text))
+            List<SqlParameter> lista = getLista();
+            if(lista!= null)
+            {
+                try
+                {
+                    Alerta.Visible = false;
+                    resultado = bl.InsertarItem("Gabinete", ref msg, lista);
+                    if (resultado == true)
+                    {
+                        MessageBox(this, msg);
+                    }
+                    else
+                    {
+                        MessageBox(this, "Solo se permiten 10 caracteres en el modelo");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
             {
                 Alerta.Visible = true;
+            }
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (Marca_DDL.SelectedIndex == 0 | Tipo_DDL.SelectedIndex == 0 | String.IsNullOrEmpty(Modelo_TB.Text))
+            {
+                lista = null;
             }
             else
             {
@@ -79,7 +109,7 @@ namespace Web_Presentation.views.Formularios
                 cadena = cadena.Replace(" ", string.Empty);
                 if (cadena.Length == 0)
                 {
-                    Alerta.Visible = true;
+                    lista = null;
                     Modelo_TB.Text = "";
                 }
                 else
@@ -94,28 +124,19 @@ namespace Web_Presentation.views.Formularios
                         tipo.Value = Tipo_DDL.SelectedValue;
                         modelo.Value = Modelo_TB.Text.Trim();
 
-                        List<SqlParameter> lista = new List<SqlParameter>()
+                        lista = new List<SqlParameter>()
                         {
                             marca,tipo,modelo
                         };
-                        resultado = bl.InsertarItem("Gabinete",ref msg, lista);
-                        if (resultado==true)
-                        {
-                            MessageBox(this, msg);
-                        }
-                        else
-                        {
-
-                            MessageBox(this, "Solo se permiten 10 caracteres en el modelo");
-                        }
-
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox(this, "Error: " + ex.Message);
+                        lista = null;
                     }
                 }
             }
+            return lista;
         }
     }
 }

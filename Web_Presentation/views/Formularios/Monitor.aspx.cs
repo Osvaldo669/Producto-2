@@ -80,45 +80,57 @@ namespace Web_Presentation.views.Formularios
         protected void Guardar_Click(object sender, EventArgs e)
         {
             string msg = "";
-            if (Tipo_conector.SelectedIndex == 0 | Marca_monitor.SelectedIndex==0 | Tamano_monitor.SelectedIndex==0)
-            {
-                Alerta.Visible = true;
-            }
-            else
+            List<SqlParameter> lista = getLista();
+            bool resultado = false;
+            if (lista != null)
             {
                 Alerta.Visible = false;
-                bool resultado = false;
-
-                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
-                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
-                SqlParameter tamano = new SqlParameter("@tamano", SqlDbType.VarChar);
-
-                marca.Value =int.Parse( Marca_monitor.SelectedItem.Value);
-                conector.Value = Tipo_conector.SelectedValue;
-                tamano.Value = Tamano_monitor.SelectedValue;
-
-                List<SqlParameter> lista = new List<SqlParameter>()
-                {
-                    marca,conector,tamano
-                };
-
                 try
                 {
                     resultado = bl.InsertarItem("Monitor", ref msg, lista);
                     if (resultado)
                         MessageBox(this, msg);
                     else
-                        MessageBox(this, msg);
+                        MessageBox(this, "Error al insertar");
 
                     Marca_monitor.SelectedIndex = 0;
                     Tipo_conector.SelectedIndex = 0;
                     Tamano_monitor.SelectedIndex = 0;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox(this, "Error: " + ex.Message);
                 }
             }
+            else
+            {
+                Alerta.Visible = true;
+            }
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (Tipo_conector.SelectedIndex == 0 | Marca_monitor.SelectedIndex == 0 | Tamano_monitor.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                Alerta.Visible = false;
+                
+
+                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
+                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
+                SqlParameter tamano = new SqlParameter("@tamano", SqlDbType.VarChar);
+
+                marca.Value = int.Parse(Marca_monitor.SelectedItem.Value);
+                conector.Value = Tipo_conector.SelectedValue;
+                tamano.Value = Tamano_monitor.SelectedValue;
+                lista = new List<SqlParameter>() { marca,conector,tamano };
+               
+            }
+            return lista;
         }
     }
 }

@@ -80,23 +80,59 @@ namespace Web_Presentation.views.Formularios
         {
             bool resultado = false;
             string msg = "";
-            if (String.IsNullOrEmpty(familia.Text) | modelo_cpu.SelectedIndex == 0 )
+            List<SqlParameter> lista = getLista();
+            if (lista != null)
+            {
+                Alerta.Visible = false;
+                try
+                {
+                    resultado = bl.InsertarItem("Tipo CPU", ref msg, lista);
+                    if (resultado)
+                    {
+                        MessageBox(this, msg);
+                        modelo_cpu.SelectedIndex = 0;
+                        familia.Text = "";
+                        velocidad.Text = "";
+                        tipo_TB.Text = "";
+                        extra_TB.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox(this, "Error: Al insertar el item");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
             {
                 Alerta.Visible = true;
+            }
+
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (String.IsNullOrEmpty(familia.Text) | modelo_cpu.SelectedIndex == 0)
+            {
+                lista = null;
             }
             else
             {
                 string cadena = familia.Text.Replace(" ", string.Empty);
                 if (cadena.Length == 0)
                 {
-                    Alerta.Visible = true;
+                    lista = null; 
                     familia.Text = "";
                 }
                 else
                 {
                     if (familia.Text == "")
                     {
-                        Alerta.Visible = true;
+                        lista = null;
                         familia.Text = "";
                     }
                     else
@@ -120,33 +156,12 @@ namespace Web_Presentation.views.Formularios
                         fam.Value = familia.Text.Trim();
                         tipo.Value = tipo_TB.Text;
                         modelo.Value = modelo_cpu.SelectedValue;
-                        List<SqlParameter> lista = new List<SqlParameter>() { modelo,tipo,vel,fam,extra };
-
-                        try
-                        {
-                            resultado = bl.InsertarItem("Tipo CPU", ref msg, lista);
-                            if (resultado)
-                            {
-                                MessageBox(this, msg);
-                                modelo_cpu.SelectedIndex = 0;
-                                familia.Text = "";
-                                velocidad.Text = "";
-                                tipo_TB.Text = "";
-                                extra_TB.Text = "";
-                            }
-                            else
-                            {
-                                MessageBox(this, "Error: Al insertar el item");
-                            }
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox(this, "Error: " + ex.Message);
-                        }
+                        lista = new List<SqlParameter>() { modelo, tipo, vel, fam, extra };
                     }
                 }
 
             }
+            return lista;
         }
     }
 }

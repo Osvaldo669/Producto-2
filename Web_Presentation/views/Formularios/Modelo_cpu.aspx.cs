@@ -64,9 +64,41 @@ namespace Web_Presentation.views.Formularios
         {
             string msg = "";
             bool resultado = false;
-            if (Marca_DDL.SelectedIndex == 0 | Modelo_TB.Text.Length==0)
+            List<SqlParameter> lista = getlista();
+
+            if (lista != null)
+            {
+                Alerta.Visible = false;
+                try
+                {
+                    resultado = bl.InsertarItem("Modelo CPU", ref msg, lista);
+                    if (resultado)
+                        MessageBox(this, msg);
+                    else
+                    {
+                        MessageBox(this, "Error al insertar");
+                    }
+
+                    Marca_DDL.SelectedIndex = 0;
+                    Modelo_TB.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error" + ex.Message);
+                }
+            }
+            else
             {
                 Alerta.Visible = true;
+            }
+        }
+
+        private List<SqlParameter> getlista()
+        {
+            List<SqlParameter> lista = null;
+            if (Marca_DDL.SelectedIndex == 0 | Modelo_TB.Text.Length == 0)
+            {
+                lista = null;
             }
             else
             {
@@ -74,43 +106,25 @@ namespace Web_Presentation.views.Formularios
                 cadena = cadena.Replace(" ", string.Empty);
                 if (cadena.Length == 0)
                 {
-                    Alerta.Visible = true;
+                    lista = null;
                     Modelo_TB.Text = "";
                 }
                 else
                 {
                     Alerta.Visible = false;
-                    SqlParameter modelo = new SqlParameter("@modelo",SqlDbType.VarChar);
+                    SqlParameter modelo = new SqlParameter("@modelo", SqlDbType.VarChar);
                     SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
 
                     modelo.Value = Modelo_TB.Text.Trim();
                     marca.Value = Marca_DDL.SelectedValue;
 
-                    List<SqlParameter> lista = new List<SqlParameter>()
+                    lista = new List<SqlParameter>()
                     {
                         modelo,marca
                     };
-
-                    try
-                    {
-                        resultado = bl.InsertarItem("Modelo CPU", ref msg, lista);
-                        if (resultado)
-                            MessageBox(this, msg);
-                        else
-                        {
-                            MessageBox(this, "Error al insertar");
-                        }
-
-                        Marca_DDL.SelectedIndex = 0;
-                        Modelo_TB.Text = "";
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox(this, "Error" + ex.Message);
-                    }
-                
                 }
             }
+            return lista;
         }
     }
 }

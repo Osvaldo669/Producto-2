@@ -30,25 +30,15 @@ namespace Web_Presentation.views.Formularios
         protected void Guardar_Click(object sender, EventArgs e)
         {
             //Metodo Para insertar un Mouse
-            if(Tipos_usb_drop.SelectedIndex == 0 | Marcas_drop.SelectedIndex == 0)
-            {
-                Alerta.Visible = true;
-            }
-            else
+            bool resultado = false;
+            string msg = "";
+            List<SqlParameter> lista = getLista();
+            if (lista != null)
             {
                 Alerta.Visible = false;
-                bool resultado = false;
-                string msg = "";
-                List<SqlParameter> sqls = new List<SqlParameter>();
-                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
-                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
-                marca.Value = Convert.ToInt16(Marcas_drop.SelectedItem.Value);
-                conector.Value = Tipos_usb_drop.SelectedValue;
-                sqls.Add(marca);
-                sqls.Add(conector);
                 try
                 {
-                    resultado = bl.InsertarItem("Mouse", ref msg, sqls);
+                    resultado = bl.InsertarItem("Mouse", ref msg, lista);
                     if (resultado)
                         MessageBox(this, msg);
                     else
@@ -57,12 +47,37 @@ namespace Web_Presentation.views.Formularios
                     Tipos_usb_drop.SelectedIndex = 0;
                     Marcas_drop.SelectedIndex = 0;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     msg = ex.Message;
                     MessageBox(this, msg);
                 }
             }
+            else
+            {
+                Alerta.Visible = true;
+            }
+        }
+
+        private List<SqlParameter> getLista()
+        {
+            List<SqlParameter> lista = null;
+            if (Tipos_usb_drop.SelectedIndex == 0 | Marcas_drop.SelectedIndex == 0)
+            {
+                lista = null;
+            }
+            else
+            {
+
+                lista = new List<SqlParameter>();
+                SqlParameter marca = new SqlParameter("@marca", SqlDbType.Int);
+                SqlParameter conector = new SqlParameter("@conector", SqlDbType.VarChar);
+                marca.Value = Convert.ToInt16(Marcas_drop.SelectedItem.Value);
+                conector.Value = Tipos_usb_drop.SelectedValue;
+                lista.Add(marca);
+                lista.Add(conector);
+            }
+            return lista;
         }
         private void LlenarDropDown()
         {
