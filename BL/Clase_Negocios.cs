@@ -248,12 +248,12 @@ namespace BL
                     query = "insert into RAM values(@capacidad,@velocidad,@tipo)";
                     break;
 
-                case "CPU Génerico":
-                    query = "";
+                case "CPU Generico":
+                    query = "insert into CPU_Generico values(@tipo,@modelo,@desc,@ram,@gab,@imagen)";
                     break;
 
-                case "Actualización":
-                    query = "";
+                case "Actualizacion":
+                    query = "insert into actualizacion values(@inv,@num,@desc,@cal)";
                     break;
 
                 case "Laboratorio":
@@ -265,7 +265,7 @@ namespace BL
                     break;
 
                 case "Computadora Final":
-                    query = "";
+                    query = "insert into computadorafinal values(@inv,@cpu,@t_cpu,@teclado,@t_tec,@monitor,@t_mon,@mouse_num,@t_mouse,@ubicacion,@ima_1,@ima_2,@ima_3,@estado);";
                     break;
 
                 case "Cantidad de disco duro":

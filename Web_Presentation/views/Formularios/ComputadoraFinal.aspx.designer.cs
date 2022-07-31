@@ -24,13 +24,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control inv_TB.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox inv_TB;
 
         /// <summary>
         /// Control Label2.
@@ -42,13 +42,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control num_CPU.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox num_CPU;
 
         /// <summary>
         /// Control Label3.
@@ -60,13 +60,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control TextBox3.
+        /// Control cpu_DDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.DropDownList cpu_DDL;
 
         /// <summary>
         /// Control Label4.
@@ -78,13 +78,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control TextBox4.
+        /// Control num_Teclado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox num_Teclado;
 
         /// <summary>
         /// Control Labe5.
@@ -96,13 +96,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Labe5;
 
         /// <summary>
-        /// Control TextBox5.
+        /// Control teclado_DDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.DropDownList teclado_DDL;
 
         /// <summary>
         /// Control Label6.
@@ -114,13 +114,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// Control TextBox6.
+        /// Control num_Monitor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox num_Monitor;
 
         /// <summary>
         /// Control Label7.
@@ -132,13 +132,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// Control TextBox7.
+        /// Control monitor_DDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.DropDownList monitor_DDL;
 
         /// <summary>
         /// Control Label8.
@@ -150,13 +150,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// Control TextBox8.
+        /// Control num_Mouse.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.TextBox num_Mouse;
 
         /// <summary>
         /// Control Label9.
@@ -168,13 +168,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label9;
 
         /// <summary>
-        /// Control TextBox9.
+        /// Control mouse_DDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.DropDownList mouse_DDL;
 
         /// <summary>
         /// Control Label10.
@@ -186,13 +186,31 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control estado_DDL.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList estado_DDL;
+
+        /// <summary>
+        /// Control Label5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+
+        /// <summary>
+        /// Control ubicacion_DDL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ubicacion_DDL;
 
         /// <summary>
         /// Control Label11.
@@ -204,13 +222,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
-        /// Control Image1.
+        /// Control imagen1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.FileUpload imagen1;
 
         /// <summary>
         /// Control Label12.
@@ -222,13 +240,13 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label12;
 
         /// <summary>
-        /// Control Image2.
+        /// Control imagen2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.FileUpload imagen2;
 
         /// <summary>
         /// Control Label13.
@@ -240,21 +258,30 @@ namespace Web_Presentation.views.Formularios
         protected global::System.Web.UI.WebControls.Label Label13;
 
         /// <summary>
-        /// Control Image3.
+        /// Control imagen3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.FileUpload imagen3;
 
         /// <summary>
-        /// Control Button1.
+        /// Control Alerta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Alerta;
+
+        /// <summary>
+        /// Control guardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button guardar;
     }
 }
