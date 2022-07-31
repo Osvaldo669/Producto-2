@@ -14,19 +14,35 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataTable contenedor = new DataTable();
+        DataTable table = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LlenarDrops();
+                LlenarActualizar();
                 Alerta.Visible = false;
             }
             else
             {
                 contenedor = (DataTable)Session["Datos_a"];
+                table = (DataTable)Session["datos_upd"];
             }
         }
 
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from Gabinete";
+            table = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in table.Rows)
+            {
+                actualizar.Items.Add(row["id_Gabinete"].ToString());
+            }
+            Session["datos_upd"] = table;
+        }
         private void LlenarDrops()
         {
             string msg = "";
@@ -67,33 +83,8 @@ namespace Web_Presentation.views.Formularios
 
         protected void guardar_Click(object sender, EventArgs e)
         {
-            string msg = "";
-            bool resultado = false;
-            List<SqlParameter> lista = getLista();
-            if(lista!= null)
-            {
-                try
-                {
-                    Alerta.Visible = false;
-                    resultado = bl.InsertarItem("Gabinete", ref msg, lista);
-                    if (resultado == true)
-                    {
-                        MessageBox(this, msg);
-                    }
-                    else
-                    {
-                        MessageBox(this, "Solo se permiten 10 caracteres en el modelo");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox(this, "Error: " + ex.Message);
-                }
-            }
-            else
-            {
-                Alerta.Visible = true;
-            }
+            OperacionesTablas(0);
+            LlenarActualizar();
         }
 
         private List<SqlParameter> getLista()
@@ -138,5 +129,78 @@ namespace Web_Presentation.views.Formularios
             }
             return lista;
         }
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            OperacionesTablas(1);
+        }
+
+        private void OperacionesTablas(int id)
+        {
+            string msg = "";
+            bool resultado = false;
+            List<SqlParameter> lista = getLista();
+            if (lista != null)
+            {
+                try
+                {
+                    Alerta.Visible = false;
+                    if (id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("Gabinete", ref msg, lista);
+
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("Gabinete", ref msg, lista);
+                    }
+
+
+                    if (resultado == true)
+                    {
+                        MessageBox(this, msg);
+                        Especial.Text = "";
+                        Modelo_TB.Text = "";
+                        Tipo_DDL.SelectedIndex = 0;
+                        Marca_DDL.SelectedIndex = 0;
+                        actualizar.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        MessageBox(this, "Solo se permiten 10 caracteres en el modelo");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, "Error: " + ex.Message);
+                }
+            }
+            else
+            {
+                Alerta.Visible = true;
+            }
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text ="ID: "+ table.Rows[index]["id_Gabinete"].ToString();
+                Modelo_TB.Text = table.Rows[index]["Modelo"].ToString();
+                Tipo_DDL.SelectedValue = table.Rows[index]["TipoForma"].ToString();
+                Marca_DDL.SelectedValue = table.Rows[index]["F_Marca"].ToString();
+            }
+        }
+
+        
+
     }
 }

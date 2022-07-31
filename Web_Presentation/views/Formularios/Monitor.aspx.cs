@@ -14,19 +14,34 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataTable contenedor = new DataTable();
+        DataTable tabla = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Alerta.Visible = false;
                 LlenarDrops();
+                LlenarActualizar();
             }
             else
             {
                 contenedor = (DataTable)Session["Datos_a"];
+                tabla = (DataTable)Session["datos_upd"];
             }
         }
-
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from monitor";
+            tabla = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in tabla.Rows)
+            {
+                actualizar.Items.Add(row["id_monitor"].ToString());
+            }
+            Session["datos_upd"] = tabla;
+        }
         private void LlenarDrops()
         {
             string msg = "";
@@ -79,6 +94,13 @@ namespace Web_Presentation.views.Formularios
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
+            operaciones
+                (0);
+            LlenarActualizar();
+        }
+
+        private void operaciones(int id)
+        {
             string msg = "";
             List<SqlParameter> lista = getLista();
             bool resultado = false;
@@ -87,7 +109,17 @@ namespace Web_Presentation.views.Formularios
                 Alerta.Visible = false;
                 try
                 {
-                    resultado = bl.InsertarItem("Monitor", ref msg, lista);
+                    if (id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("Monitor", ref msg, lista);
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("Monitor", ref msg, lista);
+                    }
                     if (resultado)
                         MessageBox(this, msg);
                     else
@@ -96,6 +128,7 @@ namespace Web_Presentation.views.Formularios
                     Marca_monitor.SelectedIndex = 0;
                     Tipo_conector.SelectedIndex = 0;
                     Tamano_monitor.SelectedIndex = 0;
+                    actualizar.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -107,7 +140,6 @@ namespace Web_Presentation.views.Formularios
                 Alerta.Visible = true;
             }
         }
-
         private List<SqlParameter> getLista()
         {
             List<SqlParameter> lista = null;
@@ -131,6 +163,28 @@ namespace Web_Presentation.views.Formularios
                
             }
             return lista;
+        }
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            operaciones(1);
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                Alerta.Visible = false;
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + tabla.Rows[index]["id_monitor"].ToString();
+                Marca_monitor.SelectedValue = tabla.Rows[index]["f_marcam"].ToString();
+                Tipo_conector.SelectedValue = tabla.Rows[index]["conectores"].ToString();
+                Tamano_monitor.SelectedValue = tabla.Rows[index]["tamano"].ToString();
+            }
         }
     }
 }

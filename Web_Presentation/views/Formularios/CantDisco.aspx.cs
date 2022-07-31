@@ -32,7 +32,7 @@ namespace Web_Presentation.views.Formularios
             string msg = "";
             string query = "select id_Disco as 'ID', TipoDisco as 'T',conector as 'C',Capacidad as 'CA', Marca.Marca as" +
                 " 'M' from DiscoDuro join Marca on DiscoDuro.F_MarcaDisco = Marca.Id_Marca;" +
-                " select num_inv as 'ID' from computadorafinal;";
+                " select num_inv as 'ID' from computadorafinal; select *  from cantDisc";
 
             try
             {
@@ -41,6 +41,7 @@ namespace Web_Presentation.views.Formularios
                 {
                     disc_DDL.Items.Add("---Seleccione una opcion---");
                     inv_DDL.Items.Add("---Seleccione una opcion---");
+                    actualizar.Items.Add("---Seleccione una opcion---");
                     ListItem item = null;
                     foreach (DataRow row in contenedor.Tables[0].Rows)
                     {
@@ -51,6 +52,10 @@ namespace Web_Presentation.views.Formularios
                     foreach (DataRow row1 in contenedor.Tables[1].Rows)
                     {
                         inv_DDL.Items.Add(row1["ID"].ToString());
+                    }
+                    foreach(DataRow row in contenedor.Tables[2].Rows)
+                    {
+                        actualizar.Items.Add(row["id_cant"].ToString());
                     }
                     Session["Datos"] = contenedor;
                 }
@@ -108,6 +113,51 @@ namespace Web_Presentation.views.Formularios
                 else
                 {
                     MessageBox(this, "Error: Surgio un erro al insertar los datos");
+                }
+            }
+            else
+            {
+                Alerta.Visible = true;
+            }
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                MessageBox(this, "Seleccione una opcion correcta");
+            }
+            else
+            {
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + contenedor.Tables[2].Rows[index]["id_cant"].ToString();
+                inv_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["num_inv"].ToString();
+                disc_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["id_Disco"].ToString();
+                
+            }
+        }
+
+        protected void guardar_datos_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            List<SqlParameter> lista = getlista();
+            SqlParameter id = new SqlParameter("@id",SqlDbType.Int);
+            id.Value = actualizar.SelectedValue;
+            lista.Add(id);
+            if (lista != null)
+            {
+                Alerta.Visible = false;
+                bool resultado = bl.UpdateItem("Cantidad de disco duro", ref msg, lista);
+                if (resultado)
+                {
+                    MessageBox(this, msg);
+                    inv_DDL.SelectedIndex = 0;
+                    disc_DDL.SelectedIndex = 0;
+                    actualizar.SelectedIndex = 0;
+                }
+                else
+                {
+                    MessageBox(this, "Error: Surgio un erro al actulizar los datos");
                 }
             }
             else

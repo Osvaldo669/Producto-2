@@ -14,19 +14,35 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataTable contenedor = new DataTable();
+        DataTable tabla = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LlenarDrops();
                 Alerta.Visible = false;
+                LlenarActualizar();
             }
             else
             {
                 contenedor = (DataTable)Session["Datos_a"];
+                tabla = (DataTable)Session["Datos_upd"];
             }
         }
 
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from RAM";
+            tabla = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in tabla.Rows)
+            {
+                actualizar.Items.Add(row["id_RAM"].ToString());
+            }
+            Session["datos_upd"] = tabla;
+        }
         private void LlenarDrops()
         {
             string msg = "";
@@ -72,6 +88,13 @@ namespace Web_Presentation.views.Formularios
 
         protected void guardar_Click(object sender, EventArgs e)
         {
+            operaciones(0);
+            LlenarActualizar();
+
+        }
+
+        private void operaciones(int id)
+        {
             string msg = "";
             bool resultado = false;
             List<SqlParameter> lista = getLista();
@@ -81,7 +104,17 @@ namespace Web_Presentation.views.Formularios
                 Alerta.Visible = false;
                 try
                 {
-                    resultado = bl.InsertarItem("RAM", ref msg, lista);
+                    if (id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("RAM", ref msg, lista);
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("RAM", ref msg, lista);
+                    }
                     if (resultado)
                     {
                         MessageBox(this, msg);
@@ -103,7 +136,6 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
-
         }
 
         private List<SqlParameter> getLista()
@@ -140,6 +172,29 @@ namespace Web_Presentation.views.Formularios
                 }
             }
             return lista;
+        }
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            operaciones(1);
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                Alerta.Visible = false;
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + tabla.Rows[index]["id_RAM"].ToString();
+                capacidad.SelectedValue = tabla.Rows[index]["Capacidad"].ToString();
+                Velocidad.Text = tabla.Rows[index]["Velocidad"].ToString();
+                tipos.SelectedValue = tabla.Rows[index]["F_TipoR"].ToString();
+                
+            }
         }
     }
 }

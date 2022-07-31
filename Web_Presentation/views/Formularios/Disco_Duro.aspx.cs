@@ -14,17 +14,35 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataTable contenedor = new DataTable();
+        DataTable table = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LlenarDrops();
+                LlenarActualizar(); 
                 Alerta.Visible = false;
             }
             else
             {
                 contenedor = (DataTable)Session["Datos_a"];
+                table = (DataTable)Session["datos_upd"];
+                Especial.Text = "";
             }
+        }
+
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from DiscoDuro";
+            table = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in table.Rows)
+            {
+                actualizar.Items.Add(row["id_Disco"].ToString());
+            }
+            Session["datos_upd"] = table;
         }
 
         private void LlenarDrops()
@@ -77,15 +95,34 @@ namespace Web_Presentation.views.Formularios
 
         protected void guardar_Click(object sender, EventArgs e)
         {
+            OperacionesTablas(0);
+            LlenarActualizar();
+           
+        }
+        private void OperacionesTablas(int id)
+        {
             string msg = "";
             List<SqlParameter> lista = getLista();
-
+            bool resultado;
             if (lista != null)
             {
                 try
                 {
                     Alerta.Visible = false;
-                    bool resultado = bl.InsertarItem("Disco Duro", ref msg, lista);
+                    if(id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("Disco Duro", ref msg, lista);
+
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("Disco Duro", ref msg, lista);
+                    }
+
+
                     if (resultado)
                     {
                         MessageBox(this, msg);
@@ -107,11 +144,9 @@ namespace Web_Presentation.views.Formularios
             }
             else
             {
-                Alerta.Visible = true ;
+                Alerta.Visible = true;
             }
-           
         }
-
         private List<SqlParameter> getLista()
         {
             List<SqlParameter> lista = null;
@@ -145,6 +180,29 @@ namespace Web_Presentation.views.Formularios
             }
             return lista;
         }
-       
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            OperacionesTablas(1);
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                MessageBox(this, "Seleccione una opcion correcta");
+            }
+            else
+            {
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + table.Rows[index]["id_Disco"].ToString();
+                tipos_DDL.SelectedValue = table.Rows[index]["TipoDisco"].ToString();
+                conector_DDL.SelectedValue = table.Rows[index]["conector"].ToString();
+                Marca_DDL.SelectedValue = table.Rows[index]["F_MarcaDisco"].ToString();
+                capacidad_DDL.SelectedValue = table.Rows[index]["Capacidad"].ToString();
+                Extra.Text = table.Rows[index]["Extra"].ToString();
+               
+            }
+        }
     }
 }

@@ -15,44 +15,38 @@ namespace Web_Presentation.views.Formularios
     public partial class Componente : System.Web.UI.Page
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
+        DataTable table = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Alerta.Visible = false;
+                LlenarDrop();
+            }
+            else{
+                table = (DataTable)Session["datos"];
             }
         }
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
-            List<SqlParameter> lista = getLista();
+            operaciones(0);
+        }
+
+        private void LlenarDrop()
+        {
             string msg = "";
-            bool resultado = false;
-            if (lista != null)
+            string query = "select *  from Componente";
+            table = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            ListItem item;
+            foreach(DataRow row in table.Rows)
             {
-                Alerta.Visible = false;
-                try
-                {
-                    resultado = bl.InsertarItem("Componente", ref msg, lista);
-                    if (resultado)
-                        MessageBox(this, msg);
-                    else
-                        MessageBox(this, "No se pudo realizar la operacion");
-
-                    Componente_textB.Text = "";
-
-                }
-                catch (Exception ex)
-                {
-                    msg = ex.Message;
-                    MessageBox(this, msg);
-                }
+                item = new ListItem(row["Componente"].ToString(),row["Id_Componente"].ToString());
+                actualizar.Items.Add(item);
             }
-            else
-            {
-                Alerta.Visible = true;
-            }
-
+            Session["datos"] = table;
         }
         public static void MessageBox(System.Web.UI.Page page, string Msg)
         {
@@ -87,6 +81,97 @@ namespace Web_Presentation.views.Formularios
                 };
             }
             return lista;
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                MessageBox(this, "Seleccione una opcion correcta");
+            }
+            else
+            {
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + table.Rows[index]["Id_Componente"].ToString();
+                Componente_textB.Text = table.Rows[index]["Componente"].ToString();
+                Extra.Text = table.Rows[index]["Extra"].ToString();
+
+            }
+        }
+
+        protected void guardar_datos_Click(object sender, EventArgs e)
+        {
+            operaciones(1);
+        }
+
+        private void operaciones(int tarea)
+        {
+            string msg = "";
+            bool resultado = false;
+            List<SqlParameter> lista = getLista();
+            if(tarea== 1)
+            {
+                SqlParameter id = new SqlParameter("@id", SqlDbType.Int);
+                id.Value = actualizar.SelectedValue;
+                lista.Add(id);
+                if (lista != null)
+                {
+                    Alerta.Visible = false;
+                    try
+                    {
+                        resultado = bl.UpdateItem("Componente", ref msg, lista);
+                        if (resultado)
+                            MessageBox(this, msg);
+                        else
+                            MessageBox(this, "No se pudo realizar la operacion");
+
+                        Componente_textB.Text = "";
+                        actualizar.SelectedIndex = 0;
+                        Extra.Text = "";
+
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = ex.Message;
+                        MessageBox(this, msg);
+                    }
+                }
+                else
+                {
+                    Alerta.Visible = true;
+                }
+            }
+            else
+            {
+                if (lista != null)
+                {
+                    Alerta.Visible = false;
+                    try
+                    {
+                        resultado = bl.InsertarItem("Componente", ref msg, lista);
+                        if (resultado)
+                            MessageBox(this, msg);
+                        else
+                            MessageBox(this, "No se pudo realizar la operacion");
+
+                        Componente_textB.Text = "";
+
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = ex.Message;
+                        MessageBox(this, msg);
+                    }
+                }
+                else
+                {
+                    Alerta.Visible = true;
+                }
+                LlenarDrop();
+            }
+
+            
+            
         }
     }
 }

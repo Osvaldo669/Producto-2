@@ -14,16 +14,19 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataSet contenedor = new DataSet();
+        DataTable table = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LlenarDrops();
                 Alerta.Visible = false;
+                LlenarActualizar();
             }
             else
             {
                 contenedor = (DataSet)Session["Datos"];
+                table = (DataTable)Session["datos_upd"];
             }
         }
 
@@ -92,6 +95,19 @@ namespace Web_Presentation.views.Formularios
             }
         }
 
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from computadorafinal";
+            table = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in table.Rows)
+            {
+                actualizar.Items.Add(row["num_inv"].ToString());
+            }
+            Session["datos_upd"] = table;
+        }
         public static void MessageBox(System.Web.UI.Page page, string Msg)
         {
             ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "alertMessage", "alert('" + Msg + "')", true);
@@ -224,16 +240,38 @@ namespace Web_Presentation.views.Formularios
 
         protected void guardar_Click(object sender, EventArgs e)
         {
+            operacionesItem(0);
+        }
+
+        protected void guardar_datos_Click(object sender, EventArgs e)
+        {
+            operacionesItem(1);
+        }
+        private void operacionesItem(int id)
+        {
             List<SqlParameter> lista = getLista();
             if (lista != null)
             {
+                bool resultado;
                 Alerta.Visible = false;
                 string msg = "";
-                bool resultado = bl.InsertarItem("Computadora Final", ref msg, lista);
+                if (id == 1)
+                {
+                    SqlParameter id_valor = new SqlParameter("@id", SqlDbType.VarChar);
+                    id_valor.Value = inv_TB.Text;
+                    lista.Add(id_valor);
+                    resultado = bl.UpdateItem("Computadora Final", ref msg, lista);
+                }
+                else
+                {
+                    resultado = bl.InsertarItem("Computadora Final", ref msg, lista);
+                }
+
                 if (resultado)
                 {
                     MessageBox(this, msg);
                     inv_TB.Text = "";
+                    inv_TB.Enabled = true;
                     (num_CPU.Text) = "";
                     cpu_DDL.SelectedIndex = 0;
                     (num_Teclado.Text) = "";
@@ -247,12 +285,36 @@ namespace Web_Presentation.views.Formularios
                 }
                 else
                 {
-                    MessageBox(this, "Error al insertar los datos");
+                    MessageBox(this, "Error al realizar la operacion");
                 }
             }
             else
             {
                 Alerta.Visible = true;
+            }
+        }
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                MessageBox(this, "Seleccione una opcion correcta");
+            }
+            else
+            {
+                int index = actualizar.SelectedIndex - 1;
+                inv_TB.Text = table.Rows[index]["num_inv"].ToString();
+                inv_TB.Enabled = false;
+                num_CPU.Text = table.Rows[index]["num_scpu"].ToString();
+                cpu_DDL.SelectedValue = table.Rows[index]["id_cpug"].ToString();
+                num_Teclado.Text = table.Rows[index]["num_steclado"].ToString();
+                teclado_DDL.SelectedValue = table.Rows[index]["id_tecladog"].ToString();
+                num_Monitor.Text = table.Rows[index]["num_smonitor"].ToString();
+                monitor_DDL.SelectedValue = table.Rows[index]["id_mong"].ToString();
+                num_Mouse.Text = table.Rows[index]["num_smouse"].ToString();
+                mouse_DDL.SelectedValue = table.Rows[index]["id_mousg"].ToString();
+                estado_DDL.SelectedValue = table.Rows[index]["Estado"].ToString();
+                ubicacion_DDL.SelectedValue = table.Rows[index]["ubicacion"].ToString();
+
             }
         }
     }

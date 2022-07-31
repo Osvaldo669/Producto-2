@@ -8,7 +8,7 @@
           <div class="card-body">
         <div class="justify-content-center">
             <form>
-
+              <h4><asp:Label ID="Especial" runat="server" Text=""> </asp:Label></h4>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <asp:Label ID="Label2" runat="server" Text="Marca Mouse"></asp:Label>
@@ -34,6 +34,16 @@
                 </div>
                 <br />
                 <asp:Button ID="Guardar" OnClick="Guardar_Click" runat="server" CssClass=" btn btn-success" Text="Guardar Mouse" />
+                    <div class="form-row" runat="server">
+                            <h5>Actualizar Item</h5>
+                            <div class="form-group col-md-6">
+                                <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
+                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <br />
+                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                               
+                            </div>
+                        </div>
             </form>
             </div>
               </div>
