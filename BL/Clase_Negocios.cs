@@ -200,6 +200,176 @@ namespace BL
 
 
 
+        public bool InsertarItem(string clave, ref string msg, List<SqlParameter> sqlParameters)
+        {
+            bool resultado = false;
+            string query = "";
+            switch (clave)
+            {
+                case "Componente":
+                    query = "insert into Componente values(@componente,@extra)";
+                    break;
+
+                case "Marca":
+                    query = "insert into Marca values(@marca,@componente,@extra);";
+                    break;
+
+                case "Monitor":
+                    query = "insert into monitor values(@marca,@conector,@tamano);";
+                    break;
+
+                case "Teclado":
+                    query = "insert into teclado values(@marca,@conector)";
+                    break;
+
+                case "Mouse":
+                    query = "insert into mouse values(@marca, @conector)";
+                    break;
+
+                case "Gabinete":
+                    query = "insert into Gabinete values(@modelo,@tipo, @marca);";
+                    break;
+
+                case "Disco Duro":
+                    query = "insert into DiscoDuro values(@tipo,@conector,@capacidad,@marca,@extra);";
+                    break;
+
+                case "Modelo CPU":
+                    query = "insert into ModeloCPU values (@modelo,@marca)";
+                    break;
+
+                case "Tipo CPU":
+                    query = "insert into Tipo_CPU values(@tipo,@fam,@vel,@extra,@modelo);";
+                    break;
+
+                case "Tipo RAM":
+                    query = "insert into TipoRAM values(@tipo,@extra);";
+                    break;
+
+                case "RAM":
+                    query = "insert into RAM values(@capacidad,@velocidad,@tipo)";
+                    break;
+
+                case "CPU Generico":
+                    query = "insert into CPU_Generico values(@tipo,@modelo,@desc,@ram,@gab,@imagen)";
+                    break;
+
+                case "Actualizacion":
+                    query = "insert into actualizacion values(@inv,@num,@desc,@cal)";
+                    break;
+
+                case "Laboratorio":
+                    query = "insert into laboratorio values(@lab);";
+                    break;
+
+                case "Ubicacion":
+                    query = "insert into ubicacion values(@num,@lab);";
+                    break;
+
+                case "Computadora Final":
+                    query = "insert into computadorafinal values(@inv,@cpu,@t_cpu,@teclado,@t_tec,@monitor,@t_mon,@mouse_num,@t_mouse,@ubicacion,@ima_1,@ima_2,@ima_3,@estado);";
+                    break;
+
+                case "Cantidad de disco duro":
+                    query = "insert into cantDisc values(@num,@disc);";
+                    break;
+            }
+            resultado = accesoDatos.Operaciones_Tables(query, ref msg, sqlParameters);
+            return resultado;
+        }
+
+        public bool UpdateItem(string clave, ref string msg, List<SqlParameter> sqlParameters)
+        {
+            bool resultado;
+            string query = "";
+            switch (clave)
+            {
+                case "Componente":
+                    query = "UPDATE Componente SET Componente=@componente, Extra=@extra  where Id_Componente=@id";
+                    break;
+
+                case "Marca":
+                    query = "UPDATE Marca SET Marca =@marca, f_Id_Componente=@componente, Extra =@extra where Id_Marca=@id;";
+                    break;
+
+                case "Monitor":
+                    query = "UPDATE monitor SET f_marcam=@marca, conectores=@conector, tamano=@tamano where id_monitor=@id;";
+                    break;
+
+                case "Teclado":
+                    query = "UPDATE teclado SET f_marcat=@marca, conector=@conector where id_teclado=@id";
+                    break;
+
+                case "Mouse":
+                    query = "UPDATE mouse SET f_marcamouse=@marca,conector=@conector where id_mouse=@id;";
+                    break;
+
+                case "Gabinete":
+                    query = "UPDATE Gabinete SET F_Marca=@marca, Modelo=@modelo,TipoForma=@tipo  where id_Gabinete=@id;";
+                    break;
+
+                case "Disco Duro":
+                    query = "UPDATE DiscoDuro SET TipoDisco=@tipo,conector=@conector,Capacidad=@capacidad, F_MarcaDisco=@marca,Extra=@extra  where id_Disco=@id;";
+                    break;
+
+                case "Modelo CPU":
+                    query = "UPDATE ModeloCPU SET modeloCPU=@modelo, f_marca=@marca where id_modcpu=@id";
+                    break;
+
+                case "Tipo CPU":
+                    query = "UPDATE Tipo_CPU SET Tipo=@tipo, Familia = @fam, Velocidad=@vel, Extra=@extra, f_id_modcpu=@modelo where id_Tcpu=@id;";
+                    break;
+
+                case "Tipo RAM":
+                    query = "UPDATE TipoRAM SET Tipo=@tipo, Extra=@extra where id_tipoRam=@id;";
+                    break;
+
+                case "RAM":
+                    query = "UPDATE RAM SET Capacidad=@capacidad,Velocidad=@velocidad, F_TipoR =@tipo   where id_RAM=@id;";
+                    break;
+
+                case "CPU Generico":
+                    query = "UPDATE CPU_Generico SET f_Tcpu=@tipo,Modelo=@modelo,Descripcion=@desc,f_tipoRam =@ram,id_Gabinete=@gab, imagen_cpu_generico= @imagen where id_CPU=@id;";
+                    break;
+
+                case "Actualizacion":
+                    query = "UPDATE actualizacion SET num_inv = @inv, num_serie= @num, descripcion =@desc, fecha = @cal where id_act=@id";
+                    break;
+
+                case "Laboratorio":
+                    query = "UPDATE laboratorio SET nombre_laboratorio=@lab where nombre_laboratorio=@id";
+                    break;
+
+                case "Ubicacion":
+                    query = "UPDATE ubicacion SET num_inv  = @num, nombre_laboratorio=@lab where num_inv = @num;";
+                    break;
+
+                case "Computadora Final":
+                    query = "UPDATE computadorafinal SET num_inv=@inv, num_scpu=@cpu, id_cpug=@t_cpu, num_steclado=@teclado,id_tecladog=@t_tec, num_smonitor=@monitor," +
+                        "id_mong=@t_mon, num_smouse=@mouse_num, id_mousg=@t_mouse,ubicacion=@ubicacion, imagen1=@ima_1, imagen2=@ima_2,imagen3=@ima_3, Estado=@estado where num_inv=@id;";
+                    break;
+
+                case "Cantidad de disco duro":
+                    query = "UPDATE cantDisc SET num_inv=@num, id_Disco=@disc  where id_cant=@id;";
+                    break;
+            }
+            resultado = accesoDatos.Operaciones_Tables(query, ref msg, sqlParameters);
+            return resultado;
+        }
+
+        public DataTable getMarca( ref string msg,int parametro)
+        {
+            string query = "select m.Id_Marca as 'ID', Marca from marca m join Componente c on c.Id_Componente=m.f_Id_Componente where f_Id_Componente=@id";
+            DataTable data;
+            List<SqlParameter> lista_Provisional = new List<SqlParameter>();
+            SqlParameter sqlparametro = new SqlParameter("@id",SqlDbType.Int);
+            sqlparametro.Value=parametro;
+            lista_Provisional.Add(sqlparametro);
+            data = accesoDatos.Innner_consulta(query, ref msg, lista_Provisional).Tables[0];
+            return data;
+        }
+
+
         
 
 
