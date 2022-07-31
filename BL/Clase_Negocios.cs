@@ -296,9 +296,9 @@ namespace BL
                     query = "UPDATE monitor SET f_marcam=@marca, conectores=@conector, tamano=@tamano where id_monitor=@id;";
                     break;
 
-                //case "Teclado":
-                //    query = "insert into teclado values(@marca,@conector)";
-                //    break;
+                case "Teclado":
+                    query = "UPDATE teclado SET f_marcat=@marca, conector=@conector where id_teclado=@id";
+                    break;
 
                 case "Mouse":
                     query = "UPDATE mouse SET f_marcamouse=@marca,conector=@conector where id_mouse=@id;";
@@ -316,13 +316,13 @@ namespace BL
                     query = "UPDATE ModeloCPU SET modeloCPU=@modelo, f_marca=@marca where id_modcpu=@id";
                     break;
 
-                //case "Tipo CPU":
-                //    query = "insert into Tipo_CPU values(@tipo,@fam,@vel,@extra,@modelo);";
-                //    break;
+                case "Tipo CPU":
+                    query = "UPDATE Tipo_CPU SET Tipo=@tipo, Familia = @fam, Velocidad=@vel, Extra=@extra, f_id_modcpu=@modelo where id_Tcpu=@id;";
+                    break;
 
-                //case "Tipo RAM":
-                //    query = "insert into TipoRAM values(@tipo,@extra);";
-                //    break;
+                case "Tipo RAM":
+                    query = "UPDATE TipoRAM SET Tipo=@tipo, Extra=@extra where id_tipoRam=@id;";
+                    break;
 
                 case "RAM":
                     query = "UPDATE RAM SET Capacidad=@capacidad,Velocidad=@velocidad, F_TipoR =@tipo   where id_RAM=@id;";
@@ -340,9 +340,9 @@ namespace BL
                     query = "UPDATE laboratorio SET nombre_laboratorio=@lab where nombre_laboratorio=@id";
                     break;
 
-                //case "Ubicacion":
-                //    query = "insert into ubicacion values(@num,@lab);";
-                //    break;
+                case "Ubicacion":
+                    query = "UPDATE ubicacion SET num_inv  = @num, nombre_laboratorio=@lab where num_inv = @num;";
+                    break;
 
                 case "Computadora Final":
                     query = "UPDATE computadorafinal SET num_inv=@inv, num_scpu=@cpu, id_cpug=@t_cpu, num_steclado=@teclado,id_tecladog=@t_tec, num_smonitor=@monitor," +

@@ -13,32 +13,68 @@ namespace Web_Presentation.views.Formularios
     public partial class Tipo_Ram : System.Web.UI.Page
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
+        DataTable tabla = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Alerta.Visible = false;
+                LlenarActualizar();
+            }
+            else
+            {
+                tabla =(DataTable) Session["datos_upd"];
             }
 
         }
 
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from TipoRAM";
+            tabla = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            foreach (DataRow row in tabla.Rows)
+            {
+                actualizar.Items.Add(row["id_tipoRam"].ToString());
+            }
+            Session["datos_upd"] = tabla;
+        }
         protected void guardar_Click(object sender, EventArgs e)
+        {
+            operaciones(0);
+            LlenarActualizar();
+        }
+
+        private void operaciones(int id)
         {
             bool resultado = false;
             string msg = "";
-            List<SqlParameter> lista =getLista();
+            List<SqlParameter> lista = getLista();
 
             if (lista != null)
             {
                 Alerta.Visible = false;
                 try
                 {
-                    resultado = bl.InsertarItem("Tipo RAM", ref msg, lista);
+                    if (id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("Tipo RAM", ref msg, lista);
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("Tipo RAM", ref msg, lista);
+                    }
                     if (resultado)
                     {
                         MessageBox(this, msg);
                         extra_TB.Text = "";
                         tipo_ram.Text = "";
+                        actualizar.SelectedIndex = 0;
                     }
                     else
                     {
@@ -52,10 +88,9 @@ namespace Web_Presentation.views.Formularios
             }
             else
             {
-                Alerta.Visible = true ;
+                Alerta.Visible = true;
             }
         }
-
 
         public static void MessageBox(System.Web.UI.Page page, string Msg)
         {
@@ -107,6 +142,27 @@ namespace Web_Presentation.views.Formularios
                 }
             }
             return lista;
+        }
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            operaciones(1);
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                Alerta.Visible = false;
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + tabla.Rows[index]["id_tipoRam"].ToString();
+                tipo_ram.Text = tabla.Rows[index]["Tipo"].ToString();
+                extra_TB.Text = tabla.Rows[index]["Extra"].ToString();
+            }
         }
     }
 }

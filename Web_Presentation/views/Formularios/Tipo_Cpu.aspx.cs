@@ -14,19 +14,37 @@ namespace Web_Presentation.views.Formularios
     {
         Clase_Negocios bl = new Clase_Negocios(System.Configuration.ConfigurationManager.ConnectionStrings["Sql_Server"].ConnectionString);
         DataTable contenedor = new DataTable();
+        DataTable tabla = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LlenarDrops();
                 Alerta.Visible = false;
+                LlenarActualizar();
             }
             else
             {
                 contenedor = (DataTable)Session["Datos_a"];
+                tabla = (DataTable)Session["datos_upd"];
             }
         }
 
+        private void LlenarActualizar()
+        {
+            string msg = "";
+            string query = "select *  from Tipo_CPU";
+            tabla = bl.consultaSencilla(query, ref msg).Tables[0];
+            actualizar.Items.Clear();
+            actualizar.Items.Add("---Seleccione una opcion---");
+            ListItem item;
+            foreach (DataRow row in tabla.Rows)
+            {
+                item = new ListItem(row["Tipo"].ToString(), row["id_Tcpu"].ToString());
+                actualizar.Items.Add(item);
+            }
+            Session["datos_upd"] = tabla;
+        }
         protected void modelo_cpu_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(modelo_cpu.SelectedIndex == 0)
@@ -78,6 +96,13 @@ namespace Web_Presentation.views.Formularios
 
         protected void guardar_Click(object sender, EventArgs e)
         {
+
+            operaciones(0);
+            LlenarActualizar();
+        }
+
+        private void operaciones(int id)
+        {
             bool resultado = false;
             string msg = "";
             List<SqlParameter> lista = getLista();
@@ -86,7 +111,18 @@ namespace Web_Presentation.views.Formularios
                 Alerta.Visible = false;
                 try
                 {
-                    resultado = bl.InsertarItem("Tipo CPU", ref msg, lista);
+                    if (id == 1)
+                    {
+                        SqlParameter id_valor = new SqlParameter("@id", SqlDbType.Int);
+                        id_valor.Value = actualizar.SelectedValue;
+                        lista.Add(id_valor);
+                        resultado = bl.UpdateItem("Tipo CPU", ref msg, lista);
+                    }
+                    else
+                    {
+                        resultado = bl.InsertarItem("Tipo CPU", ref msg, lista);
+                    }
+
                     if (resultado)
                     {
                         MessageBox(this, msg);
@@ -95,6 +131,7 @@ namespace Web_Presentation.views.Formularios
                         velocidad.Text = "";
                         tipo_TB.Text = "";
                         extra_TB.Text = "";
+                        actualizar.SelectedIndex = 0;
                     }
                     else
                     {
@@ -110,7 +147,6 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
-
         }
 
         private List<SqlParameter> getLista()
@@ -162,6 +198,31 @@ namespace Web_Presentation.views.Formularios
 
             }
             return lista;
+        }
+
+        protected void actualizar_datos_Click(object sender, EventArgs e)
+        {
+            operaciones(1);
+            
+        }
+
+        protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (actualizar.SelectedIndex == 0)
+            {
+                Alerta.Visible = true;
+            }
+            else
+            {
+                Alerta.Visible = false;
+                int index = actualizar.SelectedIndex - 1;
+                Especial.Text = "ID: " + tabla.Rows[index]["id_Tcpu"].ToString();
+                familia.Text = tabla.Rows[index]["Familia"].ToString();
+                velocidad.Text = tabla.Rows[index]["Velocidad"].ToString();
+                extra_TB.Text = tabla.Rows[index]["Extra"].ToString();
+                modelo_cpu.SelectedValue = tabla.Rows[index]["f_id_modcpu"].ToString();
+                
+            }
         }
     }
 }
