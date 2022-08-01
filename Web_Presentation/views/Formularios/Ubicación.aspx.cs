@@ -145,6 +145,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             operaciones(1);
+            LlenarDrops();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,8 +159,15 @@ namespace Web_Presentation.views.Formularios
                 Alerta.Visible = false;
                 int index = actualizar.SelectedIndex - 1;
 
-                inv_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["num_inv"].ToString();
-                lab_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["nombre_laboratorio"].ToString();
+                try
+                {
+                    inv_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["num_inv"].ToString();
+                    lab_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["nombre_laboratorio"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
     }

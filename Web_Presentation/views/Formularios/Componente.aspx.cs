@@ -92,9 +92,16 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + table.Rows[index]["Id_Componente"].ToString();
-                Componente_textB.Text = table.Rows[index]["Componente"].ToString();
-                Extra.Text = table.Rows[index]["Extra"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + table.Rows[index]["Id_Componente"].ToString();
+                    Componente_textB.Text = table.Rows[index]["Componente"].ToString();
+                    Extra.Text = table.Rows[index]["Extra"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
 
             }
         }

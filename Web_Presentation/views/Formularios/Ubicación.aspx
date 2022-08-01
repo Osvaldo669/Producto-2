@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+        <div class="card alert alert-light">
             <h5 class="card-header">Inserta la ubicación</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -12,13 +12,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label1" runat="server" Text="Numero de inventario"></asp:Label>
-                                <asp:DropDownList ID="inv_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="inv_DDL" CssClass="btn btn-success dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label2" runat="server" Text="Nombre de laboratorio"></asp:Label>
-                                <asp:DropDownList ID="lab_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="lab_DDL" CssClass="btn btn-success dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
 
                             </div>
                         </div>
@@ -33,12 +33,14 @@
                                   </div>
                             </div>
                         <br />
-                        <asp:Button ID="guardar" OnClick="guardar_Click" runat="server" Text="Guardar" />
+                        <asp:Button ID="guardar" CssClass="btn btn-info" OnClick="guardar_Click" runat="server" Text="Guardar" />
                                 <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-dark dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

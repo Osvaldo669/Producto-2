@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+        <div class="card alert alert-info">
             <h5 class="card-header">Inserta el tipo de CPU</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -12,7 +12,7 @@
                        <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label6" runat="server" Text="Identificador de modelo de CPU"></asp:Label>
-                                <asp:DropDownList ID="modelo_cpu" AutoPostBack="true" OnSelectedIndexChanged="modelo_cpu_SelectedIndexChanged" on Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="modelo_cpu" CssClass="btn btn-light dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="modelo_cpu_SelectedIndexChanged" on Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
@@ -49,13 +49,14 @@
                                   </div>
                             </div>
                         <br />
-                        <asp:Button ID="guardar" OnClick="guardar_Click" runat="server" Text="Guardar" />
+                        <asp:Button ID="guardar" CssClass="btn btn-success" OnClick="guardar_Click" runat="server" Text="Guardar" />
                                  <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-dark dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

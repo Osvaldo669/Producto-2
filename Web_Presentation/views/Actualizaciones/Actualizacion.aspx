@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top:5%">
         <div class="card alert alert-secondary">
-          <h5 class="card-header">Buscar Computadora</h5>
+          <h5 class="card-header">Buscar Computadora(Actualizaciones)</h5>
           <div class="card-body">
             <h6 class="card-title">Introduzca el numero de inventario:
             </h6>

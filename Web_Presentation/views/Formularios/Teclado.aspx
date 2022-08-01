@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+        <div class="card alert alert-info">
             <h5 class="card-header">Inserta el teclado</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -13,12 +13,12 @@
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label2" runat="server" Text="Marca Teclado"></asp:Label>
                                 <br />
-                                <asp:DropDownList ID="Marca" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                                <asp:DropDownList ID="Marca" CssClass="btn btn-secondary dropdown-toggle btn-light" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label3" runat="server" Text="Conector"></asp:Label>
-                                <asp:DropDownList ID="Conector" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                                <asp:DropDownList ID="Conector" CssClass="btn btn-secondary dropdown-toggle btn-light" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <br />
                             <div class="form-row">
@@ -34,10 +34,11 @@
                         <asp:Button ID="Guardar" OnClick="Guardar_Click" runat="server" CssClass=" btn btn-success" Text="Guardar" />
                                 <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-secondary dropdown-toggle btn-dark" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

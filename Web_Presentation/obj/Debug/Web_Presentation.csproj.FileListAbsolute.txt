@@ -124,8 +124,6 @@ C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\obj\Debug\Web_Presenta
 C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\obj\Debug\Web_Presentation.csproj.CopyComplete
 C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\obj\Debug\Web_Presentation.dll
 C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\obj\Debug\Web_Presentation.pdb
-C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\bin\Entities.dll
-C:\Users\Gamer\Desktop\Puebas\Producto-2\Web_Presentation\bin\Entities.pdb
 C:\Users\acer\Documents\Producto-2\Web_Presentation\bin\Web_Presentation.dll.config
 C:\Users\acer\Documents\Producto-2\Web_Presentation\bin\Web_Presentation.dll
 C:\Users\acer\Documents\Producto-2\Web_Presentation\bin\Web_Presentation.pdb

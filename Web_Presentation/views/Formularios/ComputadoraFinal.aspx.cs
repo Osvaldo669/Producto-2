@@ -241,11 +241,13 @@ namespace Web_Presentation.views.Formularios
         protected void guardar_Click(object sender, EventArgs e)
         {
             operacionesItem(0);
+            LlenarActualizar();
         }
 
         protected void guardar_datos_Click(object sender, EventArgs e)
         {
             operacionesItem(1);
+            LlenarActualizar();
         }
         private void operacionesItem(int id)
         {
@@ -302,18 +304,25 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                inv_TB.Text = table.Rows[index]["num_inv"].ToString();
-                inv_TB.Enabled = false;
-                num_CPU.Text = table.Rows[index]["num_scpu"].ToString();
-                cpu_DDL.SelectedValue = table.Rows[index]["id_cpug"].ToString();
-                num_Teclado.Text = table.Rows[index]["num_steclado"].ToString();
-                teclado_DDL.SelectedValue = table.Rows[index]["id_tecladog"].ToString();
-                num_Monitor.Text = table.Rows[index]["num_smonitor"].ToString();
-                monitor_DDL.SelectedValue = table.Rows[index]["id_mong"].ToString();
-                num_Mouse.Text = table.Rows[index]["num_smouse"].ToString();
-                mouse_DDL.SelectedValue = table.Rows[index]["id_mousg"].ToString();
-                estado_DDL.SelectedValue = table.Rows[index]["Estado"].ToString();
-                ubicacion_DDL.SelectedValue = table.Rows[index]["ubicacion"].ToString();
+                try
+                {
+                    inv_TB.Text = table.Rows[index]["num_inv"].ToString();
+                    inv_TB.Enabled = false;
+                    num_CPU.Text = table.Rows[index]["num_scpu"].ToString();
+                    cpu_DDL.SelectedValue = table.Rows[index]["id_cpug"].ToString();
+                    num_Teclado.Text = table.Rows[index]["num_steclado"].ToString();
+                    teclado_DDL.SelectedValue = table.Rows[index]["id_tecladog"].ToString();
+                    num_Monitor.Text = table.Rows[index]["num_smonitor"].ToString();
+                    monitor_DDL.SelectedValue = table.Rows[index]["id_mong"].ToString();
+                    num_Mouse.Text = table.Rows[index]["num_smouse"].ToString();
+                    mouse_DDL.SelectedValue = table.Rows[index]["id_mousg"].ToString();
+                    estado_DDL.SelectedValue = table.Rows[index]["Estado"].ToString();
+                    ubicacion_DDL.SelectedValue = table.Rows[index]["ubicacion"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
 
             }
         }

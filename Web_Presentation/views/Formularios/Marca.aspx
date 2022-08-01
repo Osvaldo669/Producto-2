@@ -11,17 +11,17 @@
                          <h4><asp:Label ID="Especial" runat="server" Text=""> </asp:Label></h4>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label2" runat="server" Text="Nombre de la Marca"></asp:Label>
-                            <asp:TextBox ID="Marca_text" runat="server" placeholder="Inserte el nombre de la marca" Width="100%"></asp:TextBox>
+                            <asp:TextBox ID="Marca_text" runat="server" CssClass="form-control" placeholder="Inserte el nombre de la marca" Width="100%"></asp:TextBox>
                         </div>
                         
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label3" runat="server" Text="Componente"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="Componente" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="Componente" CssClass="btn btn-dark dropdown-toggle" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label1" runat="server" Text="Extra"></asp:Label>
-                            <asp:TextBox ID="Extra" runat="server" placeholder="Extra---No es necesario llenarlo" Width="100%"></asp:TextBox>
+                            <asp:TextBox ID="Extra" runat="server" CssClass="form-control" placeholder="Extra---No es necesario llenarlo" Width="100%"></asp:TextBox>
                         </div>
                          <br />
                             <div class="form-row">
@@ -34,15 +34,16 @@
                                   </div>
                             </div>
                         <br />
-                        <asp:Button ID="Guardar" runat="server" Text="Guardar" OnClick="Guardar_Click" />
+                        <asp:Button ID="Guardar" runat="server" CssClass="btn-success btn" Text="Guardar" OnClick="Guardar_Click" />
                                  <div class="form-row" runat="server">
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

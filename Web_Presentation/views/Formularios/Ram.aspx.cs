@@ -177,6 +177,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             operaciones(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -189,11 +190,18 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = false;
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + tabla.Rows[index]["id_RAM"].ToString();
-                capacidad.SelectedValue = tabla.Rows[index]["Capacidad"].ToString();
-                Velocidad.Text = tabla.Rows[index]["Velocidad"].ToString();
-                tipos.SelectedValue = tabla.Rows[index]["F_TipoR"].ToString();
-                
+                try
+                {
+                    Especial.Text = "ID: " + tabla.Rows[index]["id_RAM"].ToString();
+                    capacidad.SelectedValue = tabla.Rows[index]["Capacidad"].ToString();
+                    Velocidad.Text = tabla.Rows[index]["Velocidad"].ToString();
+                    tipos.SelectedValue = tabla.Rows[index]["F_TipoR"].ToString();
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
     }

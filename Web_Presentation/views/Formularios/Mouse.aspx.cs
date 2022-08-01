@@ -122,6 +122,7 @@ namespace Web_Presentation.views.Formularios
                 Marcas_drop.Items.Add("---Seleccione una opcion---");
                 Tipos_usb_drop.Items.Add("---Seleccione una opcion---");
                 Tipos_usb_drop.Items.Add("PS27");
+                Tipos_usb_drop.Items.Add("USB");
                 Tipos_usb_drop.Items.Add("USB 2.0");
                 Tipos_usb_drop.Items.Add("USB 3.0");
                 Tipos_usb_drop.Items.Add("Bluetooth");
@@ -154,6 +155,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             operaciones(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,9 +168,16 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = false;
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + tabla.Rows[index]["id_mouse"].ToString();
-                Marcas_drop.SelectedValue = tabla.Rows[index]["f_marcamouse"].ToString();
-                Tipos_usb_drop.SelectedValue = tabla.Rows[index]["conector"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + tabla.Rows[index]["id_mouse"].ToString();
+                    Marcas_drop.SelectedValue = tabla.Rows[index]["f_marcamouse"].ToString();
+                    Tipos_usb_drop.SelectedValue = tabla.Rows[index]["conector"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this,"Error: "+ ex.Message);
+                }
             }
         }
     }

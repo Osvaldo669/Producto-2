@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
-            <h5 class="card-header">Inserta el Gabinete</h5>
+        <div class="card alert alert-secondary">
+            <h5 class="card-header">Insertar un Gabinete</h5>
             <div class="card-body">
                 <div class="justify-content-center">
                     <form>
@@ -12,16 +12,16 @@
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label2" runat="server" Text="Modelo"></asp:Label>
                             <br />
-                            <asp:TextBox ID="Modelo_TB" placeholder="Modelo" Width="100%" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="Modelo_TB" CssClass="form-control" placeholder="Modelo" Width="100%" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label3" runat="server" Text="Marca del Gabinete"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="Marca_DDL" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="Marca_DDL" CssClass="btn btn-dark dropdown-toggle" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label4" runat="server" Text="Tipo-forma"></asp:Label>
-                            <asp:DropDownList ID="Tipo_DDL" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="Tipo_DDL" runat="server" CssClass="btn btn-dark dropdown-toggle" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <br />
                             <div class="form-row">
@@ -39,10 +39,11 @@
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" AutoPostBack="true" CssClass="btn btn-light dropdown-toggle" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

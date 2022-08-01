@@ -168,6 +168,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             operaciones(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,10 +181,17 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = false;
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + tabla.Rows[index]["id_monitor"].ToString();
-                Marca_monitor.SelectedValue = tabla.Rows[index]["f_marcam"].ToString();
-                Tipo_conector.SelectedValue = tabla.Rows[index]["conectores"].ToString();
-                Tamano_monitor.SelectedValue = tabla.Rows[index]["tamano"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + tabla.Rows[index]["id_monitor"].ToString();
+                    Marca_monitor.SelectedValue = tabla.Rows[index]["f_marcam"].ToString();
+                    Tipo_conector.SelectedValue = tabla.Rows[index]["conectores"].ToString();
+                    Tamano_monitor.SelectedValue = tabla.Rows[index]["tamano"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
     }

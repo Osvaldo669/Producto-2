@@ -49,7 +49,7 @@ namespace Web_Presentation.views.Formularios
                         inv_DDL.SelectedIndex = 0;
                         num_TB.Text = "";
                         desc_TB.Text = "";
-                        
+                        actualizar.SelectedIndex = 0;
                     }
                     else
                     {
@@ -65,6 +65,7 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
+            LlenarActualizar();
         }
         private List<SqlParameter> getlista()
         {
@@ -193,6 +194,7 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
+            LlenarActualizar();
         }
 
 
@@ -205,11 +207,18 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text ="ID: "+ tabla.Rows[index]["id_act"].ToString();
-                inv_DDL.SelectedValue = tabla.Rows[index]["num_inv"].ToString();
-                num_TB.Text = tabla.Rows[index]["num_serie"].ToString();
-                desc_TB.Text=tabla.Rows[index]["descripcion"].ToString();
-                Calendar1.SelectedDate =Convert.ToDateTime(tabla.Rows[index]["fecha"].ToString());
+                try
+                {
+                    Especial.Text = "ID: " + tabla.Rows[index]["id_act"].ToString();
+                    inv_DDL.SelectedValue = tabla.Rows[index]["num_inv"].ToString();
+                    num_TB.Text = tabla.Rows[index]["num_serie"].ToString();
+                    desc_TB.Text = tabla.Rows[index]["descripcion"].ToString();
+                    Calendar1.SelectedDate = Convert.ToDateTime(tabla.Rows[index]["fecha"].ToString());
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
     }

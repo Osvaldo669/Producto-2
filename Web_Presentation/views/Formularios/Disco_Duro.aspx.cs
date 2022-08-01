@@ -184,6 +184,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             OperacionesTablas(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,12 +196,19 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + table.Rows[index]["id_Disco"].ToString();
-                tipos_DDL.SelectedValue = table.Rows[index]["TipoDisco"].ToString();
-                conector_DDL.SelectedValue = table.Rows[index]["conector"].ToString();
-                Marca_DDL.SelectedValue = table.Rows[index]["F_MarcaDisco"].ToString();
-                capacidad_DDL.SelectedValue = table.Rows[index]["Capacidad"].ToString();
-                Extra.Text = table.Rows[index]["Extra"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + table.Rows[index]["id_Disco"].ToString();
+                    tipos_DDL.SelectedValue = table.Rows[index]["TipoDisco"].ToString();
+                    conector_DDL.SelectedValue = table.Rows[index]["conector"].ToString();
+                    Marca_DDL.SelectedValue = table.Rows[index]["F_MarcaDisco"].ToString();
+                    capacidad_DDL.SelectedValue = table.Rows[index]["Capacidad"].ToString();
+                    Extra.Text = table.Rows[index]["Extra"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
                
             }
         }

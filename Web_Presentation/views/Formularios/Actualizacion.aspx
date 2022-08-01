@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+    <div class="container" style="margin-top: 3%; margin-bottom:8%">
+        <div class="card alert alert-dark">
             <h5 class="card-header">Inserta la actualización</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -12,25 +12,25 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label2" runat="server" Text="Numero de inventario"></asp:Label>
-                                <asp:DropDownList ID="inv_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="inv_DDL" CssClass="btn btn-light dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label3" runat="server" Text="Numero de serie"></asp:Label>
-                                <asp:TextBox ID="num_TB" runat="server" placeholder="Numero de serie" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="num_TB" CssClass="form-control" runat="server" placeholder="Numero de serie" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label4" runat="server" Text="Descripción"></asp:Label>
-                                <asp:TextBox ID="desc_TB" runat="server" placeholder="Descripción" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="desc_TB" CssClass="form-control" runat="server" placeholder="Descripción" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label5" runat="server" Text="Fecha"></asp:Label>
-                                <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                                <asp:Calendar ID="Calendar1" CssClass="table" runat="server"></asp:Calendar>
                             </div>
                         </div>
                         <br />
@@ -44,14 +44,17 @@
                                   </div>
                             </div>
                         <br />
-                        <asp:Button ID="guardar" OnClick="guardar_Click" runat="server" Text="Guardar" />
+                        <asp:Button ID="guardar" CssClass="btn btn-success" OnClick="guardar_Click" runat="server" Text="Guardar" />
                         <div class="form-row" runat="server">
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label1" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-dark dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="guardar_datos" OnClick="guardar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                 <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="guardar_datos" OnClick="guardar_datos_Click" CssClass="btn btn-warning" runat="server" Text="Actualizar Datos" />
+
+                                </div>
                                
                             </div>
                         </div>

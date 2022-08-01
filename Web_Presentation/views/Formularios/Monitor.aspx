@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+        <div class="card alert alert-danger">
             <h5 class="card-header">Insertar el monitor</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -13,17 +13,17 @@
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label2" runat="server" Text="Marca monitor"></asp:Label>
                                 <br />
-                                <asp:DropDownList ID="Marca_monitor" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                                <asp:DropDownList ID="Marca_monitor" CssClass="btn btn-success dropdown-toggle"  runat="server" Height="35px" Width="100%"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label3" runat="server" Text="Tipo de Conector"></asp:Label>
-                            <asp:DropDownList ID="Tipo_conector" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="Tipo_conector" CssClass="btn btn-success dropdown-toggle"  runat="server" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label ID="Label4" runat="server" Text="Tamaño"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="Tamano_monitor" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="Tamano_monitor" CssClass="btn btn-success dropdown-toggle" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                         </div>
                         <br />
                             <div class="form-row">
@@ -36,15 +36,16 @@
                                   </div>
                             </div>
                         <br />
-                        <asp:Button ID="Guardar" OnClick="Guardar_Click" runat="server" CssClass=" btn btn-success" Text="Guardar" />
+                        <asp:Button ID="Guardar" OnClick="Guardar_Click" runat="server" CssClass=" btn btn-info" Text="Guardar" />
                                      <div class="form-row" runat="server">
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-dark " AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                               <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>

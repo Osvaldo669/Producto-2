@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
-          <h5 class="card-header">Inserta el mouse</h5>
+        <div class="card alert  alert-dark">
+          <h5 class="card-header">Insertar un mouse</h5>
           <div class="card-body">
         <div class="justify-content-center">
             <form>
@@ -13,7 +13,7 @@
                     <div class="form-group col-md-6">
                         <asp:Label ID="Label2" runat="server" Text="Marca Mouse"></asp:Label>
                         <br />
-                        <asp:DropDownList ID="Marcas_drop" runat="server" Height="35px" Width="100%"></asp:DropDownList>
+                        <asp:DropDownList ID="Marcas_drop" CssClass="btn btn-secondary dropdown-toggle" runat="server" Height="35px" Width="100%"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="form-row">
@@ -38,9 +38,11 @@
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-secondary dropdown-toggle btn-dark" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="actualizar_datos" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                <div class="row" style="margin-top:3%">
+                                    <asp:Button ID="actualizar_datos" CssClass="btn-warning btn" OnClick="actualizar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                                
                             </div>
                         </div>

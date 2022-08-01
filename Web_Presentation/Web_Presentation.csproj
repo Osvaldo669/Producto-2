@@ -99,6 +99,7 @@
     <Content Include="views\Formularios\Tipo_Cpu.aspx" />
     <Content Include="views\Formularios\Tipo_Ram.aspx" />
     <Content Include="views\Formularios\Ubicación.aspx" />
+    <Content Include="views\Home\HomePage.aspx" />
     <Content Include="views\Lab-Com\Lab-Com.aspx" />
     <Content Include="views\Operaciones\Operaciones.aspx" />
     <Content Include="views\tipo-monitor\tipo_monitor.aspx" />
@@ -247,6 +248,13 @@
     <Compile Include="views\Formularios\Ubicación.aspx.designer.cs">
       <DependentUpon>Ubicación.aspx</DependentUpon>
     </Compile>
+    <Compile Include="views\Home\HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="views\Home\HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="views\inventario.Master.cs">
       <DependentUpon>inventario.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -297,10 +305,6 @@
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{78647a2d-9d69-43f2-a989-cce2849bd63a}</Project>
       <Name>BL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{ad039978-10f5-44e0-a333-075a6196082f}</Project>
-      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

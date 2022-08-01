@@ -43,7 +43,6 @@ namespace Web_Presentation.views.Formularios
         protected void guardar_Click(object sender, EventArgs e)
         {
             OperacionesTablas(0);
-            LlenarActualizar();
         }
 
         private List<SqlParameter> getLista()
@@ -131,6 +130,7 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
+            LlenarActualizar();
         }
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
@@ -146,7 +146,14 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                laboratorio_text.Text = table.Rows[index]["nombre_laboratorio"].ToString();
+                try
+                {
+                    laboratorio_text.Text = table.Rows[index]["nombre_laboratorio"].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
                 
             }
         }

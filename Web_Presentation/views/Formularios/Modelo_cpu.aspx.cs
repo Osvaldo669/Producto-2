@@ -79,7 +79,8 @@ namespace Web_Presentation.views.Formularios
 
         protected void Guardar_Click(object sender, EventArgs e)
         {
-           
+            OperacionesTablas(0);
+            LlenarActualizar();
         }
 
         private List<SqlParameter> getlista()
@@ -168,6 +169,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             OperacionesTablas(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,9 +182,16 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = false;
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + tabla.Rows[index]["id_modcpu"].ToString();
-                Modelo_TB.Text = tabla.Rows[index]["modeloCPU"].ToString();
-                Marca_DDL.SelectedValue = tabla.Rows[index]["f_marca"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + tabla.Rows[index]["id_modcpu"].ToString();
+                    Modelo_TB.Text = tabla.Rows[index]["modeloCPU"].ToString();
+                    Marca_DDL.SelectedValue = tabla.Rows[index]["f_marca"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
                 
             }
         }

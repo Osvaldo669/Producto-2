@@ -198,6 +198,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             OperacionesTable(1);
+            LlenarActualizar();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -210,12 +211,19 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: "+table.Rows[index]["id_CPU"].ToString();
-                tipo_DDL.SelectedValue = table.Rows[index]["f_Tcpu"].ToString();
-                modelo_TB.Text = table.Rows[index]["Modelo"].ToString();
-                desc_TB.Text = table.Rows[index]["Descripcion"].ToString();
-                ram_DDL.SelectedValue = table.Rows[index]["f_tipoRam"].ToString();
-                gabinete_DDL.SelectedValue = table.Rows[index]["id_Gabinete"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + table.Rows[index]["id_CPU"].ToString();
+                    tipo_DDL.SelectedValue = table.Rows[index]["f_Tcpu"].ToString();
+                    modelo_TB.Text = table.Rows[index]["Modelo"].ToString();
+                    desc_TB.Text = table.Rows[index]["Descripcion"].ToString();
+                    ram_DDL.SelectedValue = table.Rows[index]["f_tipoRam"].ToString();
+                    gabinete_DDL.SelectedValue = table.Rows[index]["id_Gabinete"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
     }

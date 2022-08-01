@@ -119,6 +119,7 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
+            LlenarDrops();
         }
 
         protected void actualizar_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,9 +131,16 @@ namespace Web_Presentation.views.Formularios
             else
             {
                 int index = actualizar.SelectedIndex - 1;
-                Especial.Text = "ID: " + contenedor.Tables[2].Rows[index]["id_cant"].ToString();
-                inv_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["num_inv"].ToString();
-                disc_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["id_Disco"].ToString();
+                try
+                {
+                    Especial.Text = "ID: " + contenedor.Tables[2].Rows[index]["id_cant"].ToString();
+                    inv_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["num_inv"].ToString();
+                    disc_DDL.SelectedValue = contenedor.Tables[2].Rows[index]["id_Disco"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
                 
             }
         }
@@ -164,6 +172,7 @@ namespace Web_Presentation.views.Formularios
             {
                 Alerta.Visible = true;
             }
+            LlenarDrops();
         }
     }
 }

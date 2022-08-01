@@ -133,6 +133,7 @@ namespace Web_Presentation.views.Formularios
         protected void actualizar_datos_Click(object sender, EventArgs e)
         {
             OperacionesTablas(1);
+            LlenarActualizar();
         }
 
         private void OperacionesTablas(int id)
@@ -194,9 +195,16 @@ namespace Web_Presentation.views.Formularios
             {
                 int index = actualizar.SelectedIndex - 1;
                 Especial.Text ="ID: "+ table.Rows[index]["id_Gabinete"].ToString();
-                Modelo_TB.Text = table.Rows[index]["Modelo"].ToString();
-                Tipo_DDL.SelectedValue = table.Rows[index]["TipoForma"].ToString();
-                Marca_DDL.SelectedValue = table.Rows[index]["F_Marca"].ToString();
+                try
+                {
+                    Modelo_TB.Text = table.Rows[index]["Modelo"].ToString();
+                    Tipo_DDL.SelectedValue = table.Rows[index]["TipoForma"].ToString();
+                    Marca_DDL.SelectedValue = table.Rows[index]["F_Marca"].ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox(this, ex.Message);
+                }
             }
         }
 

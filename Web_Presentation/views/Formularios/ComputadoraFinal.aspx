@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="margin-top: 3%">
-        <div class="card alert alert-success">
+    <div class="container" style="margin-top: 3%; margin-bottom=5%">
+        <div class="card alert alert-dark">
             <h5 class="card-header">Inserta la computadora</h5>
             <div class="card-body">
                 <div class="justify-content-center">
@@ -12,87 +12,89 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label1" runat="server" Text="Numero de inventario (10 caracteres)"></asp:Label>
-                                <asp:TextBox ID="inv_TB" runat="server" placeholder="Numero de inventario" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="inv_TB" CssClass="form-control" runat="server" placeholder="Numero de inventario" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label2" runat="server" Text="Numero de CPU"></asp:Label>
-                                <asp:TextBox ID="num_CPU" runat="server" placeholder="Numero de CPU" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="num_CPU" CssClass="form-control" runat="server" placeholder="Numero de CPU" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label3" runat="server" Text="Identificador de CPU Genérico"></asp:Label>
-                                <asp:DropDownList ID="cpu_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="cpu_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label4" runat="server" Text="Numero de Teclado"></asp:Label>
-                                <asp:TextBox ID="num_Teclado" runat="server" placeholder="Numero de Teclado" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="num_Teclado" CssClass="form-control" runat="server" placeholder="Numero de Teclado" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Labe5" runat="server" Text="Identificador de teclado"></asp:Label>
-                                <asp:DropDownList ID="teclado_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="teclado_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label6" runat="server" Text="Numero de Monitor"></asp:Label>
-                                <asp:TextBox ID="num_Monitor" runat="server" placeholder="Numero de Monitor" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="num_Monitor" CssClass="form-control" runat="server" placeholder="Numero de Monitor" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label7" runat="server" Text="Identificador de Monitor"></asp:Label>
-                                <asp:DropDownList ID="monitor_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="monitor_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                                 
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label8" runat="server" Text="Numero de Mouse"></asp:Label>
-                                <asp:TextBox ID="num_Mouse" runat="server" placeholder="Numero de Mouse" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="num_Mouse" CssClass="form-control"  runat="server" placeholder="Numero de Mouse" Width="100%"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label9" runat="server" Text="Identificador de Mouse"></asp:Label>
-                                <asp:DropDownList ID="mouse_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="mouse_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label10" runat="server" Text="Estado"></asp:Label>
-                                <asp:DropDownList ID="estado_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="estado_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label5" runat="server" Text="Ubicacion"></asp:Label>
-                                <asp:DropDownList ID="ubicacion_DDL" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ubicacion_DDL" CssClass="btn btn-primary dropdown-toggle" Width="100%" runat="server"></asp:DropDownList>
                                 
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="row" style="margin-top:2%">
+                            <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label11" runat="server" Text="imagen1"></asp:Label>
                                 <asp:FileUpload ID="imagen1" runat="server" />
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <asp:Label ID="Label12" runat="server" Text="imagen2"></asp:Label>
-                                <asp:FileUpload ID="imagen2" runat="server" />
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <asp:Label ID="Label13" runat="server" Text="imagen3"></asp:Label>
-                                <asp:FileUpload ID="imagen3" runat="server" />
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="Label12" runat="server" Text="imagen2"></asp:Label>
+                                    <asp:FileUpload ID="imagen2" runat="server" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <asp:Label ID="Label13" runat="server" Text="imagen3"></asp:Label>
+                                    <asp:FileUpload ID="imagen3" runat="server" />
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -106,15 +108,16 @@
                                   </div>
                             </div> 
                         <br />
-                        <asp:Button ID="guardar" OnClick="guardar_Click" runat="server" Text="Guardar" />
+                        <asp:Button ID="guardar" CssClass="btn btn-success" OnClick="guardar_Click" runat="server" Text="Guardar" />
                                 <div class="form-row" runat="server">
                             <h5>Actualizar Item</h5>
                             <div class="form-group col-md-6">
                                 <asp:Label ID="Label14" runat="server" Text="Seleccione un ID: "></asp:Label>
-                                <asp:DropDownList ID="actualizar" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="actualizar" CssClass="btn btn-dark dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="actualizar_SelectedIndexChanged" Width="100%" runat="server"></asp:DropDownList>
                                 <br />
-                                <asp:Button ID="guardar_datos" OnClick="guardar_datos_Click" runat="server" Text="Actualizar Datos" />
-                               
+                               <div class="row" style="margin-top:3%">
+                                <asp:Button ID="guardar_datos" CssClass="btn btn-warning" OnClick="guardar_datos_Click" runat="server" Text="Actualizar Datos" />
+                                </div>
                             </div>
                         </div>
                     </form>
